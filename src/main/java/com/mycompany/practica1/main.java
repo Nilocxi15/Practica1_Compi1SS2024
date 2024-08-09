@@ -1,6 +1,7 @@
 package com.mycompany.practica1;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import javax.swing.JOptionPane;
 import logic.lineNumber;
 
 public class main extends javax.swing.JFrame {
@@ -30,9 +31,15 @@ public class main extends javax.swing.JFrame {
         codeTextPane = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         compileButton.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         compileButton.setText("Compilar");
+        compileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                compileButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Poppins", 0, 18)); // NOI18N
         jLabel1.setText("Línea:");
@@ -40,6 +47,13 @@ public class main extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Poppins", 0, 18)); // NOI18N
         jLabel2.setText("Columna:");
 
+        codeTextPane.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                codeTextPaneCaretPositionChanged(evt);
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
         codeScrollPane.setViewportView(codeTextPane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -73,6 +87,24 @@ public class main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void compileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compileButtonActionPerformed
+        // TODO add your handling code here:
+        //Verificando si el textPane no viene vacío
+        String code = codeTextPane.getText();
+        int lenghtCode = code.length();
+        
+        if (lenghtCode <= 0) {            
+            JOptionPane.showMessageDialog(this, "No hay ningún código escrito.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            System.out.println("El contenido no es nulo");
+        }
+    }//GEN-LAST:event_compileButtonActionPerformed
+
+    private void codeTextPaneCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_codeTextPaneCaretPositionChanged
+        // TODO add your handling code here:
+        System.out.println("El cursor cambió");
+    }//GEN-LAST:event_codeTextPaneCaretPositionChanged
 
     /**
      * @param args the command line arguments
