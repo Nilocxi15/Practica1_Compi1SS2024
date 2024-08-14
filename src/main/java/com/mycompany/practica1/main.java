@@ -1,6 +1,11 @@
 package com.mycompany.practica1;
 
+import analyzers.L_Analyzer;
+import analyzers.S_Analyzer;
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import java.io.BufferedReader;
+import java.io.StringReader;
+import java_cup.runtime.Scanner;
 import javax.swing.JOptionPane;
 import logic.lineNumber;
 
@@ -47,13 +52,7 @@ public class main extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Poppins", 0, 18)); // NOI18N
         jLabel2.setText("Columna:");
 
-        codeTextPane.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                codeTextPaneCaretPositionChanged(evt);
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-            }
-        });
+        codeTextPane.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         codeScrollPane.setViewportView(codeTextPane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -97,14 +96,16 @@ public class main extends javax.swing.JFrame {
         if (lenghtCode <= 0) {            
             JOptionPane.showMessageDialog(this, "No hay ningún código escrito.", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
-            System.out.println("El contenido no es nulo");
+            String data = codeTextPane.getText();
+            L_Analyzer lexic = new L_Analyzer(new BufferedReader(new StringReader(data)));
+            S_Analyzer sintactic = new S_Analyzer(lexic);
+            
+            try {
+                sintactic.parse();
+            } catch (Exception e) {
+            }
         }
     }//GEN-LAST:event_compileButtonActionPerformed
-
-    private void codeTextPaneCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_codeTextPaneCaretPositionChanged
-        // TODO add your handling code here:
-        System.out.println("El cursor cambió");
-    }//GEN-LAST:event_codeTextPaneCaretPositionChanged
 
     /**
      * @param args the command line arguments

@@ -1,0 +1,93 @@
+/*--------------- 1ra Area: Codigo de Usuario -----------------------*/
+//-------> importaciones, paquetes
+package analyzers;
+import java_cup.runtime.Symbol;
+import java.util.LinkedList;
+
+//------> Codigo para el parser,variables, metodos
+parser code
+{:
+    public String result="";
+    public static LinkedList<TError> TableSE = new LinkedList<TError>(); 
+
+    //Metodo al que se llama automaticamente ante algun error sintactico
+    public void syntax_error(Symbol s)
+    {        
+        String lexeme = s.value.toString();
+        int line = s.right;
+        int column = s.left;
+        
+        System.out.println("! Error Sintactico Recuperado !");
+        System.out.println("\t\tLexema: "+ lexeme);
+        System.out.println("\t\tFila: "+ line);
+        System.out.println("\t\tColumna: "+ column);
+
+        TError data = new TError(lexeme,line,column,"Error Sintactico","Caracter no esperado");
+        TableSE.add(data);
+       
+        
+    }
+
+    //Metodo al que se llama en el momento en que ya no es posible una recuperacion de errores
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
+    {        
+        String lexeme = s.value.toString();
+        int line = s.right;
+        int column = s.left;
+        
+        System.out.println("! Error Sintactico, PANIC MODE ! ");
+        System.out.println("\t\tLexema: "+lexeme);
+        System.out.println("\t\tFila: "+line);
+        System.out.println("\t\tColumna: "+column);
+
+        TError data = new TError(lexeme,line,column,"Error Sintactico","Caracter no esperado");
+        TableSE.add(data);
+     
+    }
+:}
+
+//------> Codigo para las acciones gramaticales
+action code
+{:
+:}
+
+/*--------------- 2da Area: Declaraciones -----------------------*/
+//------> declaracion de terminales 
+terminal plus,minus,times,split,paro,parc,lineterminator,name,color;
+terminal String num, comma;
+
+//------> declaracion de no terminales
+non terminal String S,A,B;
+
+//----> precedencia de menor a mayor 
+precedence left plus, minus;
+precedence left times, split;
+
+start with S;
+
+/*--------------- 3ra Area: Reglas Semanticas -----------------------*/
+S::=B;
+
+A::= A:a plus A:b {: int val1= Integer.parseInt(a);
+                    int val2= Integer.parseInt(b);
+                    double r = val1+val2;
+                    RESULT = String.valueOf(r); :}
+    |A:a minus A:b {: int val1= Integer.parseInt(a);
+                    int val2= Integer.parseInt(b);
+                    double r = val1-val2;
+                    RESULT = String.valueOf(r); :}
+    |A:a split A:b {: int val1= Integer.parseInt(a);
+                    int val2= Integer.parseInt(b);
+                    double r = val1/val2;
+                    RESULT = String.valueOf(r); :}
+    |A:a times A:b {: int val1= Integer.parseInt(a);
+                    int val2= Integer.parseInt(b);
+                    double r = val1*val2;
+                    RESULT = String.valueOf(r); :}
+    |paro A:a {: RESULT = a; :} parc
+    |num:a {: RESULT = a; :};
+
+B::= paro name comma A:posx comma A:posy comma A:radius comma color parc lineterminator {: System.out.println("Cadena aceptada");:}
+    |paro name comma A:posx comma A:posy comma A:radius comma color parc {: System.out.println("Cadena aceptada (sin salto de linea)");:};
+
+// Te recordas de preguntarle al auxiliar de cómo hacer producciones en bucle o que generen lambda
