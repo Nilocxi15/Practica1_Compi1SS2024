@@ -32,10 +32,12 @@ public class S_Analyzer extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\014\000\002\002\004\000\002\002\003\000\002\003" +
+    "\000\022\000\002\002\004\000\002\002\003\000\002\003" +
     "\005\000\002\003\005\000\002\003\005\000\002\003\005" +
-    "\000\002\005\002\000\002\003\006\000\002\003\003\000" +
-    "\002\004\016\000\002\004\015\000\002\004\002" });
+    "\000\002\012\002\000\002\003\006\000\002\003\003\000" +
+    "\002\004\016\000\002\005\020\000\002\006\022\000\002" +
+    "\007\005\000\002\007\005\000\002\007\005\000\002\010" +
+    "\016\000\002\011\003\000\002\011\003" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -43,29 +45,62 @@ public class S_Analyzer extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\035\000\006\002\ufff6\010\005\001\002\000\004\002" +
-    "\037\001\002\000\004\013\007\001\002\000\004\002\000" +
-    "\001\002\000\004\016\010\001\002\000\006\010\013\015" +
-    "\012\001\002\000\014\004\021\005\017\006\020\007\016" +
-    "\016\027\001\002\000\016\004\ufff9\005\ufff9\006\ufff9\007" +
-    "\ufff9\011\ufff9\016\ufff9\001\002\000\006\010\013\015\012" +
-    "\001\002\000\014\004\021\005\017\006\020\007\016\011" +
-    "\ufffb\001\002\000\004\011\026\001\002\000\006\010\013" +
-    "\015\012\001\002\000\006\010\013\015\012\001\002\000" +
-    "\006\010\013\015\012\001\002\000\006\010\013\015\012" +
-    "\001\002\000\016\004\uffff\005\uffff\006\020\007\016\011" +
-    "\uffff\016\uffff\001\002\000\016\004\ufffc\005\ufffc\006\ufffc" +
-    "\007\ufffc\011\ufffc\016\ufffc\001\002\000\016\004\ufffe\005" +
-    "\ufffe\006\020\007\016\011\ufffe\016\ufffe\001\002\000\016" +
-    "\004\ufffd\005\ufffd\006\ufffd\007\ufffd\011\ufffd\016\ufffd\001" +
-    "\002\000\016\004\ufffa\005\ufffa\006\ufffa\007\ufffa\011\ufffa" +
-    "\016\ufffa\001\002\000\006\010\013\015\012\001\002\000" +
-    "\014\004\021\005\017\006\020\007\016\016\031\001\002" +
-    "\000\006\010\013\015\012\001\002\000\014\004\021\005" +
-    "\017\006\020\007\016\016\033\001\002\000\004\014\034" +
-    "\001\002\000\004\011\035\001\002\000\006\002\ufff7\012" +
-    "\036\001\002\000\004\002\ufff8\001\002\000\004\002\001" +
-    "\001\002" });
+    "\000\120\000\004\012\006\001\002\000\004\002\122\001" +
+    "\002\000\004\002\000\001\002\000\010\017\010\020\007" +
+    "\021\011\001\002\000\004\010\103\001\002\000\004\010" +
+    "\066\001\002\000\004\010\012\001\002\000\004\022\014" +
+    "\001\002\000\004\002\ufff3\001\002\000\004\025\015\001" +
+    "\002\000\006\010\020\024\017\001\002\000\014\004\026" +
+    "\005\024\006\025\007\023\025\034\001\002\000\016\004" +
+    "\ufff9\005\ufff9\006\ufff9\007\ufff9\011\ufff9\025\ufff9\001\002" +
+    "\000\006\010\020\024\017\001\002\000\014\004\026\005" +
+    "\024\006\025\007\023\011\ufffb\001\002\000\004\011\033" +
+    "\001\002\000\006\010\020\024\017\001\002\000\006\010" +
+    "\020\024\017\001\002\000\006\010\020\024\017\001\002" +
+    "\000\006\010\020\024\017\001\002\000\016\004\uffff\005" +
+    "\uffff\006\025\007\023\011\uffff\025\uffff\001\002\000\016" +
+    "\004\ufffc\005\ufffc\006\ufffc\007\ufffc\011\ufffc\025\ufffc\001" +
+    "\002\000\016\004\ufffe\005\ufffe\006\025\007\023\011\ufffe" +
+    "\025\ufffe\001\002\000\016\004\ufffd\005\ufffd\006\ufffd\007" +
+    "\ufffd\011\ufffd\025\ufffd\001\002\000\016\004\ufffa\005\ufffa" +
+    "\006\ufffa\007\ufffa\011\ufffa\025\ufffa\001\002\000\006\010" +
+    "\020\024\017\001\002\000\014\004\026\005\024\006\025" +
+    "\007\023\025\036\001\002\000\006\010\020\024\017\001" +
+    "\002\000\014\004\026\005\024\006\025\007\023\025\040" +
+    "\001\002\000\006\010\020\024\017\001\002\000\014\004" +
+    "\026\005\024\006\025\007\023\025\042\001\002\000\006" +
+    "\010\020\024\017\001\002\000\014\004\026\005\024\006" +
+    "\025\007\023\025\044\001\002\000\004\023\045\001\002" +
+    "\000\004\011\046\001\002\000\006\012\006\013\047\001" +
+    "\002\000\004\014\053\001\002\000\004\002\ufff6\001\002" +
+    "\000\004\002\ufff1\001\002\000\004\002\ufff0\001\002\000" +
+    "\004\015\054\001\002\000\004\010\055\001\002\000\004" +
+    "\016\056\001\002\000\004\025\057\001\002\000\006\010" +
+    "\020\024\017\001\002\000\014\004\026\005\024\006\025" +
+    "\007\023\025\061\001\002\000\006\010\020\024\017\001" +
+    "\002\000\014\004\026\005\024\006\025\007\023\025\063" +
+    "\001\002\000\006\010\020\024\017\001\002\000\014\004" +
+    "\026\005\024\006\025\007\023\011\065\001\002\000\004" +
+    "\002\ufff2\001\002\000\004\022\070\001\002\000\004\002" +
+    "\ufff5\001\002\000\004\025\071\001\002\000\006\010\020" +
+    "\024\017\001\002\000\014\004\026\005\024\006\025\007" +
+    "\023\025\073\001\002\000\006\010\020\024\017\001\002" +
+    "\000\014\004\026\005\024\006\025\007\023\025\075\001" +
+    "\002\000\006\010\020\024\017\001\002\000\014\004\026" +
+    "\005\024\006\025\007\023\025\077\001\002\000\004\023" +
+    "\100\001\002\000\004\011\101\001\002\000\006\012\006" +
+    "\013\047\001\002\000\004\002\ufff8\001\002\000\004\022" +
+    "\105\001\002\000\004\002\ufff4\001\002\000\004\025\106" +
+    "\001\002\000\006\010\020\024\017\001\002\000\014\004" +
+    "\026\005\024\006\025\007\023\025\110\001\002\000\006" +
+    "\010\020\024\017\001\002\000\014\004\026\005\024\006" +
+    "\025\007\023\025\112\001\002\000\006\010\020\024\017" +
+    "\001\002\000\014\004\026\005\024\006\025\007\023\025" +
+    "\114\001\002\000\006\010\020\024\017\001\002\000\014" +
+    "\004\026\005\024\006\025\007\023\025\116\001\002\000" +
+    "\004\023\117\001\002\000\004\011\120\001\002\000\006" +
+    "\012\006\013\047\001\002\000\004\002\ufff7\001\002\000" +
+    "\004\002\001\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -73,17 +108,37 @@ public class S_Analyzer extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\035\000\006\002\003\004\005\001\001\000\002\001" +
+    "\000\120\000\006\002\003\007\004\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\004\005\103" +
+    "\001\001\000\004\004\066\001\001\000\004\006\012\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\004\003\010\001\001\000\002\001\001\000\002\001" +
-    "\001\000\004\003\013\001\001\000\004\005\014\001\001" +
-    "\000\002\001\001\000\004\003\024\001\001\000\004\003" +
-    "\023\001\001\000\004\003\022\001\001\000\004\003\021" +
+    "\000\004\003\015\001\001\000\002\001\001\000\002\001" +
+    "\001\000\004\003\020\001\001\000\004\012\021\001\001" +
+    "\000\002\001\001\000\004\003\031\001\001\000\004\003" +
+    "\030\001\001\000\004\003\027\001\001\000\004\003\026" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\004\003\027" +
-    "\001\001\000\002\001\001\000\004\003\031\001\001\000" +
+    "\001\000\002\001\001\000\002\001\001\000\004\003\034" +
+    "\001\001\000\002\001\001\000\004\003\036\001\001\000" +
+    "\002\001\001\000\004\003\040\001\001\000\002\001\001" +
+    "\000\004\003\042\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\010\007\051\010\050\011\047" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\004\003\057\001" +
+    "\001\000\002\001\001\000\004\003\061\001\001\000\002" +
+    "\001\001\000\004\003\063\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001" });
+    "\001\001\000\004\003\071\001\001\000\002\001\001\000" +
+    "\004\003\073\001\001\000\002\001\001\000\004\003\075" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\010\007\051\010\050\011\101\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\004\003\106\001\001\000\002\001\001\000\004" +
+    "\003\110\001\001\000\002\001\001\000\004\003\112\001" +
+    "\001\000\002\001\001\000\004\003\114\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\010\007" +
+    "\051\010\050\011\120\001\001\000\002\001\001\000\002" +
+    "\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -203,7 +258,7 @@ class CUP$S_Analyzer$actions {
           return CUP$S_Analyzer$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 1: // S ::= B 
+          case 1: // S ::= E 
             {
               String RESULT =null;
 
@@ -291,7 +346,7 @@ class CUP$S_Analyzer$actions {
 		int aright = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.peek()).value;
  RESULT = a; 
-              CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("NT$0",3, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
+              CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("NT$0",8, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
             }
           return CUP$S_Analyzer$result;
 
@@ -322,7 +377,7 @@ class CUP$S_Analyzer$actions {
           return CUP$S_Analyzer$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // B ::= paro name comma A comma A comma A comma colorprueba parc lineterminator 
+          case 9: // B ::= paro name comma A comma A comma A comma color parc G 
             {
               String RESULT =null;
 		int posxleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-8)).left;
@@ -334,35 +389,80 @@ class CUP$S_Analyzer$actions {
 		int radiusleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-4)).left;
 		int radiusright = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-4)).right;
 		String radius = (String)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-4)).value;
-		 System.out.println("Cadena aceptada");
+		 System.out.println("Cadena aceptada (Circulo o Cuadrado)");
               CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("B",2, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-11)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
             }
           return CUP$S_Analyzer$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // B ::= paro name comma A comma A comma A comma colorprueba parc 
+          case 10: // C ::= paro name comma A comma A comma A comma A comma color parc G 
             {
               String RESULT =null;
-		int posxleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-7)).left;
-		int posxright = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-7)).right;
-		String posx = (String)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-7)).value;
-		int posyleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-5)).left;
-		int posyright = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-5)).right;
-		String posy = (String)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-5)).value;
-		int radiusleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-3)).left;
-		int radiusright = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-3)).right;
-		String radius = (String)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-3)).value;
-		 System.out.println("Cadena aceptada (sin salto de linea)");
-              CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("B",2, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-10)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
+		 System.out.println("Cadena aceptada (Rectangulo o Linea)");
+              CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("C",3, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-13)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
             }
           return CUP$S_Analyzer$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 11: // B ::= 
+          case 11: // D ::= paro name comma A comma A comma A comma A comma A comma color parc G 
+            {
+              String RESULT =null;
+		 System.out.println("Cadena aceptada (Poligono)");
+              CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("D",4, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-15)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
+            }
+          return CUP$S_Analyzer$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 12: // E ::= graph shapesone B 
             {
               String RESULT =null;
 
-              CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("B",2, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
+              CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("E",5, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
+            }
+          return CUP$S_Analyzer$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 13: // E ::= graph shapestwo C 
+            {
+              String RESULT =null;
+
+              CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("E",5, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
+            }
+          return CUP$S_Analyzer$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 14: // E ::= graph shapesthree D 
+            {
+              String RESULT =null;
+
+              CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("E",5, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
+            }
+          return CUP$S_Analyzer$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 15: // F ::= animate object previous paro animation comma A comma A comma A parc 
+            {
+              String RESULT =null;
+		 System.out.println("Instrucciones completas correctas");
+              CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("F",6, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-11)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
+            }
+          return CUP$S_Analyzer$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 16: // G ::= F 
+            {
+              String RESULT =null;
+
+              CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("G",7, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
+            }
+          return CUP$S_Analyzer$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 17: // G ::= E 
+            {
+              String RESULT =null;
+
+              CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("G",7, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
             }
           return CUP$S_Analyzer$result;
 

@@ -53,11 +53,12 @@ action code
 
 /*--------------- 2da Area: Declaraciones -----------------------*/
 //------> declaracion de terminales 
-terminal plus,minus,times,split,paro,parc,name,color;
+terminal plus,minus,times,split,paro,parc,graph,animate,object,previous,animation,
+         shapesone,shapestwo,shapesthree,name,color;
 terminal String num, comma;
 
 //------> declaracion de no terminales
-non terminal String S,A,B;
+non terminal String S,A,B,C,D,E,F,G;
 
 //----> precedencia de menor a mayor 
 precedence left plus, minus;
@@ -66,7 +67,7 @@ precedence left times, split;
 start with S;
 
 /*--------------- 3ra Area: Reglas Semanticas -----------------------*/
-S::=B;
+S::=E;
 
 A::= A:a plus A:b {: int val1= Integer.parseInt(a);
                     int val2= Integer.parseInt(b);
@@ -87,8 +88,17 @@ A::= A:a plus A:b {: int val1= Integer.parseInt(a);
     |paro A:a {: RESULT = a; :} parc
     |num:a {: RESULT = a; :};
 
-B::= paro name comma A:posx comma A:posy comma A:radius comma color parc {: System.out.println("Cadena aceptada");:}
-    |paro name comma A:posx comma A:posy comma A:radius comma colorp parc {: System.out.println("Cadena aceptada (sin salto de linea)");:}
-    | /* Lambda */;
+B::= paro name comma A:posx comma A:posy comma A:radius comma color parc G {: System.out.println("Cadena aceptada (Circulo o Cuadrado)");:};
 
-// Te recordas de preguntarle al auxiliar de cómo hacer producciones en bucle o que generen lambda
+C::= paro name comma A comma A comma A comma A comma color parc G {: System.out.println("Cadena aceptada (Rectangulo o Linea)");:};
+
+D::= paro name comma A comma A comma A comma A comma A comma color parc G {: System.out.println("Cadena aceptada (Poligono)");:};
+
+E::= graph shapesone B 
+    |graph shapestwo C 
+    |graph shapesthree D;
+
+F::= animate object previous paro animation comma A comma A comma A parc {: System.out.println("Instrucciones completas correctas");:};
+
+G::= F
+    |E;
