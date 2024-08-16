@@ -104,6 +104,8 @@ public class main extends javax.swing.JFrame {
                 sintactic.parse();
             } catch (Exception e) {
             }
+            
+            lexic.printList();
         }
     }//GEN-LAST:event_compileButtonActionPerformed
 

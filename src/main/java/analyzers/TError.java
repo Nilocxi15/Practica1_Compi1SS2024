@@ -11,6 +11,11 @@ public class TError {
         this.line = line;
         this.column = column;
     }
+
+    @Override
+    public String toString() {
+        return "TError{" + "lexeme=" + lexeme + ", type=" + type + ", description=" + description + ", line=" + line + ", column=" + column + '}';
+    }
     
     
 }

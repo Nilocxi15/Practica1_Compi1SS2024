@@ -9,6 +9,14 @@ import java.util.LinkedList;
 %{
     //----> Codigo de usuario en sintaxis java
     public static LinkedList<TError> TableLE = new LinkedList<TError>();
+
+    public void printList() {
+        System.out.println(TableLE.size());
+        for (int i = 1; i <= TableLE.size(); i++) {
+            System.out.println(TableLE.get(i-1));
+        }
+        TableLE.clear();
+    }
 %}
 
 //-------> Directivas
