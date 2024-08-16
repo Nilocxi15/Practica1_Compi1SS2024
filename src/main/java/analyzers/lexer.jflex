@@ -25,11 +25,10 @@ import java.util.LinkedList;
 //------> Expresiones Regulares
 number = [0-9]+
 LineTerminator = \r|\n|\r\n
-WhiteSpace     = [ \t\f]
+WhiteSpace     = {LineTerminator} | [ \t\f]
 NameRules = [A-Za-z] | [0-9] | "_"
 Name = {NameRules}+
-//Color = "azul" | "rojo" | "amarillo" | "verde"
-//Color2 = "negro" | "anaranjado" | "morado" | "marron" | "rosado"
+Color = "azul" | "rojo" | "amarillo" | "verde" | "negro" | "anaranjado" | "morado" | "marron" | "rosado"
 
 //------> Estados
 
@@ -46,20 +45,10 @@ Name = {NameRules}+
 <YYINITIAL> "("         { System.out.println("Reconocio "+yytext()+" para"); return new Symbol(Symbols.paro, (yycolumn + 1), (yyline + 1), yytext()); }
 <YYINITIAL> ")"         { System.out.println("Reconocio "+yytext()+" parc"); return new Symbol(Symbols.parc, (yycolumn + 1), (yyline + 1), yytext()); }
 <YYINITIAL> ","         { System.out.println("Reconocio "+yytext()+" coma"); return new Symbol(Symbols.comma, (yycolumn + 1), (yyline + 1), yytext()); }
-<YYINITIAL> "azul"         { System.out.println("Reconocio "+yytext()+" color"); return new Symbol(Symbols.color, (yycolumn + 1), (yyline + 1), yytext()); }
-<YYINITIAL> "rojo"         { System.out.println("Reconocio "+yytext()+" color"); return new Symbol(Symbols.color, (yycolumn + 1), (yyline + 1), yytext()); }
-//De acá en adelante ya reconoce los colores como si fueran nombres
-<YYINITIAL> "amarillo"         { System.out.println("Reconocio "+yytext()+" color"); return new Symbol(Symbols.color, (yycolumn + 1), (yyline + 1), yytext()); }
-<YYINITIAL> "verde"         { System.out.println("Reconocio "+yytext()+" color"); return new Symbol(Symbols.color, (yycolumn + 1), (yyline + 1), yytext()); }
-<YYINITIAL> "negro"         { System.out.println("Reconocio "+yytext()+" color"); return new Symbol(Symbols.color, (yycolumn + 1), (yyline + 1), yytext()); }
-<YYINITIAL> "anaranjado"         { System.out.println("Reconocio "+yytext()+" color"); return new Symbol(Symbols.color, (yycolumn + 1), (yyline + 1), yytext()); }
-<YYINITIAL> "morado"         { System.out.println("Reconocio "+yytext()+" color"); return new Symbol(Symbols.color, (yycolumn + 1), (yyline + 1), yytext()); }
-<YYINITIAL> "marron"         { System.out.println("Reconocio "+yytext()+" color"); return new Symbol(Symbols.color, (yycolumn + 1), (yyline + 1), yytext()); }
-<YYINITIAL> "rosado"         { System.out.println("Reconocio "+yytext()+" color"); return new Symbol(Symbols.color, (yycolumn + 1), (yyline + 1), yytext()); }
+<YYINITIAL> {Color} { System.out.println("Reconocio "+yytext()+" color"); return new Symbol(Symbols.color, (yycolumn + 1), (yyline + 1), yytext()); }
 
 //-------> Simbolos ER
 <YYINITIAL> {number}    { System.out.println("Reconocio "+yytext()+" num"); return new Symbol(Symbols.num, (yycolumn + 1), (yyline + 1), yytext()); }
-<YYINITIAL> {LineTerminator}    { System.out.println("Reconocio "+yytext()+" salto de linea"); return new Symbol(Symbols.lineterminator, (yycolumn + 1), (yyline + 1), yytext()); }
 <YYINITIAL> {Name}    { System.out.println("Reconocio "+yytext()+" nombre"); return new Symbol(Symbols.name, (yycolumn + 1), (yyline + 1), yytext()); }
 
 {WhiteSpace} {/* Ignore */}

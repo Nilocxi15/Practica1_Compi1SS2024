@@ -11,7 +11,6 @@ public class Symbols {
   public static final int name = 9;
   public static final int times = 4;
   public static final int lineterminator = 8;
-  public static final int color = 10;
   public static final int minus = 3;
   public static final int paro = 6;
   public static final int num = 11;
@@ -19,6 +18,7 @@ public class Symbols {
   public static final int plus = 2;
   public static final int split = 5;
   public static final int error = 1;
+  public static final int colorprueba = 10;
   public static final int parc = 7;
   public static final int comma = 12;
   public static final String[] terminalNames = new String[] {
@@ -32,7 +32,7 @@ public class Symbols {
   "parc",
   "lineterminator",
   "name",
-  "color",
+  "colorprueba",
   "num",
   "comma"
   };

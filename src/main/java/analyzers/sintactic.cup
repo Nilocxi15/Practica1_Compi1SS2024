@@ -53,7 +53,7 @@ action code
 
 /*--------------- 2da Area: Declaraciones -----------------------*/
 //------> declaracion de terminales 
-terminal plus,minus,times,split,paro,parc,lineterminator,name,color;
+terminal plus,minus,times,split,paro,parc,name,color;
 terminal String num, comma;
 
 //------> declaracion de no terminales
@@ -87,7 +87,8 @@ A::= A:a plus A:b {: int val1= Integer.parseInt(a);
     |paro A:a {: RESULT = a; :} parc
     |num:a {: RESULT = a; :};
 
-B::= paro name comma A:posx comma A:posy comma A:radius comma color parc lineterminator {: System.out.println("Cadena aceptada");:}
-    |paro name comma A:posx comma A:posy comma A:radius comma color parc {: System.out.println("Cadena aceptada (sin salto de linea)");:};
+B::= paro name comma A:posx comma A:posy comma A:radius comma color parc {: System.out.println("Cadena aceptada");:}
+    |paro name comma A:posx comma A:posy comma A:radius comma colorp parc {: System.out.println("Cadena aceptada (sin salto de linea)");:}
+    | /* Lambda */;
 
 // Te recordas de preguntarle al auxiliar de cómo hacer producciones en bucle o que generen lambda

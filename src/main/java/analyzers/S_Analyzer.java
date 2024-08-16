@@ -32,10 +32,10 @@ public class S_Analyzer extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\013\000\002\002\004\000\002\002\003\000\002\003" +
+    "\000\014\000\002\002\004\000\002\002\003\000\002\003" +
     "\005\000\002\003\005\000\002\003\005\000\002\003\005" +
     "\000\002\005\002\000\002\003\006\000\002\003\003\000" +
-    "\002\004\016\000\002\004\015" });
+    "\002\004\016\000\002\004\015\000\002\004\002" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -43,29 +43,29 @@ public class S_Analyzer extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\035\000\004\010\005\001\002\000\004\002\037\001" +
-    "\002\000\004\013\007\001\002\000\004\002\000\001\002" +
-    "\000\004\016\010\001\002\000\006\010\013\015\012\001" +
-    "\002\000\014\004\021\005\017\006\020\007\016\016\027" +
-    "\001\002\000\016\004\ufff9\005\ufff9\006\ufff9\007\ufff9\011" +
-    "\ufff9\016\ufff9\001\002\000\006\010\013\015\012\001\002" +
-    "\000\014\004\021\005\017\006\020\007\016\011\ufffb\001" +
-    "\002\000\004\011\026\001\002\000\006\010\013\015\012" +
-    "\001\002\000\006\010\013\015\012\001\002\000\006\010" +
-    "\013\015\012\001\002\000\006\010\013\015\012\001\002" +
-    "\000\016\004\uffff\005\uffff\006\020\007\016\011\uffff\016" +
-    "\uffff\001\002\000\016\004\ufffc\005\ufffc\006\ufffc\007\ufffc" +
-    "\011\ufffc\016\ufffc\001\002\000\016\004\ufffe\005\ufffe\006" +
-    "\020\007\016\011\ufffe\016\ufffe\001\002\000\016\004\ufffd" +
-    "\005\ufffd\006\ufffd\007\ufffd\011\ufffd\016\ufffd\001\002\000" +
-    "\016\004\ufffa\005\ufffa\006\ufffa\007\ufffa\011\ufffa\016\ufffa" +
-    "\001\002\000\006\010\013\015\012\001\002\000\014\004" +
-    "\021\005\017\006\020\007\016\016\031\001\002\000\006" +
-    "\010\013\015\012\001\002\000\014\004\021\005\017\006" +
-    "\020\007\016\016\033\001\002\000\004\014\034\001\002" +
-    "\000\004\011\035\001\002\000\006\002\ufff7\012\036\001" +
-    "\002\000\004\002\ufff8\001\002\000\004\002\001\001\002" +
-    "" });
+    "\000\035\000\006\002\ufff6\010\005\001\002\000\004\002" +
+    "\037\001\002\000\004\013\007\001\002\000\004\002\000" +
+    "\001\002\000\004\016\010\001\002\000\006\010\013\015" +
+    "\012\001\002\000\014\004\021\005\017\006\020\007\016" +
+    "\016\027\001\002\000\016\004\ufff9\005\ufff9\006\ufff9\007" +
+    "\ufff9\011\ufff9\016\ufff9\001\002\000\006\010\013\015\012" +
+    "\001\002\000\014\004\021\005\017\006\020\007\016\011" +
+    "\ufffb\001\002\000\004\011\026\001\002\000\006\010\013" +
+    "\015\012\001\002\000\006\010\013\015\012\001\002\000" +
+    "\006\010\013\015\012\001\002\000\006\010\013\015\012" +
+    "\001\002\000\016\004\uffff\005\uffff\006\020\007\016\011" +
+    "\uffff\016\uffff\001\002\000\016\004\ufffc\005\ufffc\006\ufffc" +
+    "\007\ufffc\011\ufffc\016\ufffc\001\002\000\016\004\ufffe\005" +
+    "\ufffe\006\020\007\016\011\ufffe\016\ufffe\001\002\000\016" +
+    "\004\ufffd\005\ufffd\006\ufffd\007\ufffd\011\ufffd\016\ufffd\001" +
+    "\002\000\016\004\ufffa\005\ufffa\006\ufffa\007\ufffa\011\ufffa" +
+    "\016\ufffa\001\002\000\006\010\013\015\012\001\002\000" +
+    "\014\004\021\005\017\006\020\007\016\016\031\001\002" +
+    "\000\006\010\013\015\012\001\002\000\014\004\021\005" +
+    "\017\006\020\007\016\016\033\001\002\000\004\014\034" +
+    "\001\002\000\004\011\035\001\002\000\006\002\ufff7\012" +
+    "\036\001\002\000\004\002\ufff8\001\002\000\004\002\001" +
+    "\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -322,7 +322,7 @@ class CUP$S_Analyzer$actions {
           return CUP$S_Analyzer$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // B ::= paro name comma A comma A comma A comma color parc lineterminator 
+          case 9: // B ::= paro name comma A comma A comma A comma colorprueba parc lineterminator 
             {
               String RESULT =null;
 		int posxleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-8)).left;
@@ -340,7 +340,7 @@ class CUP$S_Analyzer$actions {
           return CUP$S_Analyzer$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // B ::= paro name comma A comma A comma A comma color parc 
+          case 10: // B ::= paro name comma A comma A comma A comma colorprueba parc 
             {
               String RESULT =null;
 		int posxleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-7)).left;
@@ -354,6 +354,15 @@ class CUP$S_Analyzer$actions {
 		String radius = (String)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-3)).value;
 		 System.out.println("Cadena aceptada (sin salto de linea)");
               CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("B",2, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-10)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
+            }
+          return CUP$S_Analyzer$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 11: // B ::= 
+            {
+              String RESULT =null;
+
+              CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("B",2, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
             }
           return CUP$S_Analyzer$result;
 
