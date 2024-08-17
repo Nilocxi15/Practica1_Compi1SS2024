@@ -1,12 +1,43 @@
 package com.mycompany.practica1;
 
+import analyzers.TError;
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import java.util.LinkedList;
+import javax.swing.table.DefaultTableModel;
 
 public class errorReport extends javax.swing.JFrame {
+    
+    public static LinkedList<TError> TableErrors = new LinkedList<TError>();
 
     public errorReport() {
         initComponents();
         this.setLocationRelativeTo(null);
+    }
+    
+    public void printTable() {
+        DefaultTableModel model = (DefaultTableModel) reportTable.getModel();
+        
+        Object[] row;
+        for (int i = 0; i < TableErrors.size(); i++) {
+            row = new Object[5];
+            row[0] = TableErrors.get(i).getLexeme();
+            row[1] = TableErrors.get(i).getLine();
+            row[2] = TableErrors.get(i).getColumn();
+            row[3] = TableErrors.get(i).getType();
+            row[4] = TableErrors.get(i).getDescription();
+            
+            System.out.println(TableErrors.get(i).getLexeme());
+            
+            model.addRow(row);
+        }
+    }
+    
+    public int errorsLenght() {
+        return TableErrors.size();
+    }
+    
+    public void cleanList() {
+        TableErrors.clear();
     }
 
     /**
@@ -18,26 +49,19 @@ public class errorReport extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        returnButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         reportTable = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
-
-        returnButton.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        returnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/practica1/assets/atras.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
         jLabel1.setText("Reporte de Errores");
 
         reportTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Lexema", "Línea", "Columna", "Tipo", "Descripción"
@@ -74,19 +98,16 @@ public class errorReport extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(returnButton)
-                        .addGap(217, 217, 217)
+                        .addGap(254, 254, 254)
                         .addComponent(jLabel1)))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(returnButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 22, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
@@ -112,6 +133,5 @@ public class errorReport extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable reportTable;
-    private javax.swing.JButton returnButton;
     // End of variables declaration//GEN-END:variables
 }

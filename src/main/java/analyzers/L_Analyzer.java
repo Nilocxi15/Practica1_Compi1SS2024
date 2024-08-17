@@ -7,6 +7,7 @@
 package analyzers;
 import java_cup.runtime.*;
 import java.util.LinkedList;
+import com.mycompany.practica1.errorReport;
 
 /*------------  2da Area: Opciones y Declaraciones ---------*/
 
@@ -303,18 +304,6 @@ public class L_Analyzer implements java_cup.runtime.Scanner {
 
   /** Whether the user-EOF-code has already been executed. */
   private boolean zzEOFDone;
-
-  /* user code: */
-    //----> Codigo de usuario en sintaxis java
-    public static LinkedList<TError> TableLE = new LinkedList<TError>();
-
-    public void printList() {
-        System.out.println(TableLE.size());
-        for (int i = 1; i <= TableLE.size(); i++) {
-            System.out.println(TableLE.get(i-1));
-        }
-        TableLE.clear();
-    }
 
 
   /**
@@ -743,8 +732,8 @@ public class L_Analyzer implements java_cup.runtime.Scanner {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
             { System.out.println("Error Lexico"+yytext()+" Linea "+ (yyline + 1) +" Columna "+ (yycolumn + 1));
-                          TError datos = new TError(yytext(),(yyline +1),(yycolumn + 1),"Error Lexico","Simbolo no existe en el lenguaje");
-                          TableLE.add(datos);
+                          TError datos = new TError(yytext(),(yyline +1),(yycolumn + 1),"Lexico","Simbolo no existe en el lenguaje");
+                          errorReport.TableErrors.add(datos);
             }
           // fall through
           case 21: break;

@@ -3,21 +3,10 @@
 package analyzers;
 import java_cup.runtime.*;
 import java.util.LinkedList;
+import com.mycompany.practica1.errorReport;
 
 /*------------  2da Area: Opciones y Declaraciones ---------*/
 %%
-%{
-    //----> Codigo de usuario en sintaxis java
-    public static LinkedList<TError> TableLE = new LinkedList<TError>();
-
-    public void printList() {
-        System.out.println(TableLE.size());
-        for (int i = 1; i <= TableLE.size(); i++) {
-            System.out.println(TableLE.get(i-1));
-        }
-        TableLE.clear();
-    }
-%}
 
 //-------> Directivas
 %public
@@ -76,5 +65,5 @@ Animation = "línea" | "curva"
 
 //------> Errores Lexicos
 .                       { System.out.println("Error Lexico"+yytext()+" Linea "+ (yyline + 1) +" Columna "+ (yycolumn + 1));
-                          TError datos = new TError(yytext(),(yyline +1),(yycolumn + 1),"Error Lexico","Simbolo no existe en el lenguaje");
-                          TableLE.add(datos);}
+                          TError datos = new TError(yytext(),(yyline +1),(yycolumn + 1),"Lexico","Simbolo no existe en el lenguaje");
+                          errorReport.TableErrors.add(datos);}

@@ -5,14 +5,14 @@ import analyzers.S_Analyzer;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.io.BufferedReader;
 import java.io.StringReader;
-import java_cup.runtime.Scanner;
 import javax.swing.JOptionPane;
 import logic.lineNumber;
 
 public class main extends javax.swing.JFrame {
 
     lineNumber lineNumb;
-    
+    errorReport EReport = new errorReport();
+
     public main() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -92,20 +92,29 @@ public class main extends javax.swing.JFrame {
         //Verificando si el textPane no viene vacío
         String code = codeTextPane.getText();
         int lenghtCode = code.length();
-        
-        if (lenghtCode <= 0) {            
+
+        if (lenghtCode <= 0) {
             JOptionPane.showMessageDialog(this, "No hay ningún código escrito.", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
             String data = codeTextPane.getText();
             L_Analyzer lexic = new L_Analyzer(new BufferedReader(new StringReader(data)));
             S_Analyzer sintactic = new S_Analyzer(lexic);
-            
+
             try {
                 sintactic.parse();
             } catch (Exception e) {
             }
-            
-            lexic.printList();
+
+            if (EReport.errorsLenght() == 0) {
+                System.out.println("No contiene errores el código");
+            } else {
+                System.out.println("Entra en el if");
+                EReport.setVisible(true);
+                EReport.setLocationRelativeTo(null);
+                EReport.printTable();
+                EReport.cleanList();
+            }
+
         }
     }//GEN-LAST:event_compileButtonActionPerformed
 

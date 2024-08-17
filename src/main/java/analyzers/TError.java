@@ -16,6 +16,25 @@ public class TError {
     public String toString() {
         return "TError{" + "lexeme=" + lexeme + ", type=" + type + ", description=" + description + ", line=" + line + ", column=" + column + '}';
     }
-    
+
+    public String getLexeme() {
+        return lexeme;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getLine() {
+        return line;
+    }
+
+    public int getColumn() {
+        return column;
+    }    
     
 }
