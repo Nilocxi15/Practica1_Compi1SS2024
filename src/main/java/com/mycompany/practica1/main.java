@@ -12,6 +12,7 @@ public class main extends javax.swing.JFrame {
 
     lineNumber lineNumb;
     errorReport EReport = new errorReport();
+    reports TReports = new reports();
 
     public main() {
         initComponents();
@@ -109,6 +110,7 @@ public class main extends javax.swing.JFrame {
                 reports reportsWindow = new reports();
                 reportsWindow.setVisible(true);
                 reportsWindow.setLocationRelativeTo(null);
+                TReports.cleanLists();
             } else {
                 EReport.setVisible(true);
                 EReport.setLocationRelativeTo(null);

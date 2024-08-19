@@ -60,13 +60,13 @@ terminal plus,minus,times,split,paro,parc,graph,animate,object,previous,animatio
 terminal String num, comma;
 
 //------> declaracion de no terminales
-non terminal String S,A,B,C,D,E,F,G;
+non terminal String S,A,B,C,D,E,F,G,H;
 
 //----> precedencia de menor a mayor 
 precedence left plus, minus;
 precedence left times, split;
 
-start with S;
+start with F;
 
 /*--------------- 3ra Area: Reglas Semanticas -----------------------*/
 S::=E;
@@ -103,8 +103,11 @@ E::= graph shapesone:shape B {:reports.ObjectsList.add(String.valueOf(shape));:}
     |graph shapestwo:shape C {:reports.ObjectsList.add(String.valueOf(shape));:}
     |graph shapesthree:shape D {:reports.ObjectsList.add(String.valueOf(shape));:};
 
-F::= animate object previous paro animation:anim comma A comma A comma A parc {: System.out.println("Instrucciones completas correctas");
-                                                                                reports.AnimationsList.add(String.valueOf(anim));:};
+F::= E animate object previous paro animation:anim comma A comma A comma A parc H {: System.out.println("Instrucciones completas correctas");
+                                                                                    reports.AnimationsList.add(String.valueOf(anim));:};
 
 G::= E
-    |F;
+    | /* Lambda */;
+
+H::= F
+    | /* Lambda */;
