@@ -5,8 +5,11 @@
 
 package analyzers;
 
+import logic.TError;
 import java_cup.runtime.Symbol;
 import java.util.LinkedList;
+import com.mycompany.practica1.errorReport;
+import com.mycompany.practica1.reports;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -73,7 +76,7 @@ public class S_Analyzer extends java_cup.runtime.lr_parser {
     "\025\007\023\025\044\001\002\000\004\023\045\001\002" +
     "\000\004\011\046\001\002\000\006\012\006\013\047\001" +
     "\002\000\004\014\053\001\002\000\004\002\ufff6\001\002" +
-    "\000\004\002\ufff1\001\002\000\004\002\ufff0\001\002\000" +
+    "\000\004\002\ufff0\001\002\000\004\002\ufff1\001\002\000" +
     "\004\015\054\001\002\000\004\010\055\001\002\000\004" +
     "\016\056\001\002\000\004\025\057\001\002\000\006\010" +
     "\020\024\017\001\002\000\014\004\026\005\024\006\025" +
@@ -178,7 +181,6 @@ public class S_Analyzer extends java_cup.runtime.lr_parser {
 
 
     public String result="";
-    public static LinkedList<TError> TableSE = new LinkedList<TError>(); 
 
     //Metodo al que se llama automaticamente ante algun error sintactico
     public void syntax_error(Symbol s)
@@ -192,8 +194,8 @@ public class S_Analyzer extends java_cup.runtime.lr_parser {
         System.out.println("\t\tFila: "+ line);
         System.out.println("\t\tColumna: "+ column);
 
-        TError data = new TError(lexeme,line,column,"Error Sintactico","Caracter no esperado");
-        TableSE.add(data);
+        TError data = new TError(lexeme,line,column,"Sintactico","Caracter no esperado");
+        errorReport.TableErrors.add(data);
        
         
     }
@@ -210,8 +212,8 @@ public class S_Analyzer extends java_cup.runtime.lr_parser {
         System.out.println("\t\tFila: "+line);
         System.out.println("\t\tColumna: "+column);
 
-        TError data = new TError(lexeme,line,column,"Error Sintactico","Caracter no esperado");
-        TableSE.add(data);
+        TError data = new TError(lexeme,line,column,"Sintactico","Caracter no esperado");
+        errorReport.TableErrors.add(data);
      
     }
 
@@ -389,7 +391,11 @@ class CUP$S_Analyzer$actions {
 		int radiusleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-4)).left;
 		int radiusright = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-4)).right;
 		String radius = (String)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-4)).value;
+		int colorsleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)).left;
+		int colorsright = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)).right;
+		Object colors = (Object)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)).value;
 		 System.out.println("Cadena aceptada (Circulo o Cuadrado)");
+                                                                                     reports.ColorsList.add(String.valueOf(colors));
               CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("B",2, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-11)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
             }
           return CUP$S_Analyzer$result;
@@ -398,7 +404,11 @@ class CUP$S_Analyzer$actions {
           case 10: // C ::= paro name comma A comma A comma A comma A comma color parc G 
             {
               String RESULT =null;
+		int colorsleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)).left;
+		int colorsright = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)).right;
+		Object colors = (Object)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)).value;
 		 System.out.println("Cadena aceptada (Rectangulo o Linea)");
+                                                                            reports.ColorsList.add(String.valueOf(colors));
               CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("C",3, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-13)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
             }
           return CUP$S_Analyzer$result;
@@ -407,7 +417,11 @@ class CUP$S_Analyzer$actions {
           case 11: // D ::= paro name comma A comma A comma A comma A comma A comma color parc G 
             {
               String RESULT =null;
+		int colorsleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)).left;
+		int colorsright = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)).right;
+		Object colors = (Object)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)).value;
 		 System.out.println("Cadena aceptada (Poligono)");
+                                                                                    reports.ColorsList.add(String.valueOf(colors));
               CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("D",4, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-15)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
             }
           return CUP$S_Analyzer$result;
@@ -416,7 +430,10 @@ class CUP$S_Analyzer$actions {
           case 12: // E ::= graph shapesone B 
             {
               String RESULT =null;
-
+		int shapeleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-1)).left;
+		int shaperight = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-1)).right;
+		Object shape = (Object)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-1)).value;
+		reports.ObjectsList.add(String.valueOf(shape));
               CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("E",5, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
             }
           return CUP$S_Analyzer$result;
@@ -425,7 +442,10 @@ class CUP$S_Analyzer$actions {
           case 13: // E ::= graph shapestwo C 
             {
               String RESULT =null;
-
+		int shapeleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-1)).left;
+		int shaperight = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-1)).right;
+		Object shape = (Object)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-1)).value;
+		reports.ObjectsList.add(String.valueOf(shape));
               CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("E",5, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
             }
           return CUP$S_Analyzer$result;
@@ -434,7 +454,10 @@ class CUP$S_Analyzer$actions {
           case 14: // E ::= graph shapesthree D 
             {
               String RESULT =null;
-
+		int shapeleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-1)).left;
+		int shaperight = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-1)).right;
+		Object shape = (Object)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-1)).value;
+		reports.ObjectsList.add(String.valueOf(shape));
               CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("E",5, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
             }
           return CUP$S_Analyzer$result;
@@ -443,13 +466,17 @@ class CUP$S_Analyzer$actions {
           case 15: // F ::= animate object previous paro animation comma A comma A comma A parc 
             {
               String RESULT =null;
+		int animleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-7)).left;
+		int animright = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-7)).right;
+		Object anim = (Object)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-7)).value;
 		 System.out.println("Instrucciones completas correctas");
+                                                                                reports.AnimationsList.add(String.valueOf(anim));
               CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("F",6, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-11)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
             }
           return CUP$S_Analyzer$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // G ::= F 
+          case 16: // G ::= E 
             {
               String RESULT =null;
 
@@ -458,7 +485,7 @@ class CUP$S_Analyzer$actions {
           return CUP$S_Analyzer$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 17: // G ::= E 
+          case 17: // G ::= F 
             {
               String RESULT =null;
 

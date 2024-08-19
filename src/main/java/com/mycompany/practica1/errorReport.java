@@ -1,22 +1,22 @@
 package com.mycompany.practica1;
 
-import analyzers.TError;
+import logic.TError;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.util.LinkedList;
 import javax.swing.table.DefaultTableModel;
 
 public class errorReport extends javax.swing.JFrame {
-    
+
     public static LinkedList<TError> TableErrors = new LinkedList<TError>();
 
     public errorReport() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
+
     public void printTable() {
         DefaultTableModel model = (DefaultTableModel) reportTable.getModel();
-        
+
         Object[] row;
         for (int i = 0; i < TableErrors.size(); i++) {
             row = new Object[5];
@@ -25,17 +25,26 @@ public class errorReport extends javax.swing.JFrame {
             row[2] = TableErrors.get(i).getColumn();
             row[3] = TableErrors.get(i).getType();
             row[4] = TableErrors.get(i).getDescription();
-            
-            System.out.println(TableErrors.get(i).getLexeme());
-            
+
             model.addRow(row);
         }
+
     }
-    
+
+    public void cleanTable() {
+        DefaultTableModel model = (DefaultTableModel) reportTable.getModel();
+
+        int rowCount = model.getRowCount();
+
+        if (rowCount > 0) {
+            model.getDataVector().removeAllElements();
+        }
+    }
+
     public int errorsLenght() {
         return TableErrors.size();
     }
-    
+
     public void cleanList() {
         TableErrors.clear();
     }

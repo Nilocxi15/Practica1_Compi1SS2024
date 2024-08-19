@@ -5,6 +5,7 @@
 /*------------  1ra Area: Codigo de Usuario ---------*/
 //------> Paquetes,importaciones
 package analyzers;
+import logic.TError;
 import java_cup.runtime.*;
 import java.util.LinkedList;
 import com.mycompany.practica1.errorReport;

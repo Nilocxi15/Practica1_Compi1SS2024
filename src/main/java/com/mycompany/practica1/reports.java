@@ -1,13 +1,199 @@
 package com.mycompany.practica1;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
-
+import java.util.LinkedList;
+import javax.swing.table.DefaultTableModel;
+import logic.TTokens;
 
 public class reports extends javax.swing.JFrame {
 
+    //Variables con los datos a manejar
+    public static LinkedList<String> ColorsList = new LinkedList<String>();
+    public static LinkedList<String> ObjectsList = new LinkedList<String>();
+    public static LinkedList<String> AnimationsList = new LinkedList<String>();
+    public static LinkedList<TTokens> TokensList = new LinkedList<TTokens>();
+
     public reports() {
         initComponents();
+        printTables();
         this.setLocationRelativeTo(null);
+    }
+
+    //Atributo para limpiar todas las listas
+    public void cleanLists() {
+        ColorsList.clear();
+        ObjectsList.clear();
+        AnimationsList.clear();
+        TokensList.clear();
+    }
+
+    //Atributos para generar y limpiar cada una de las tablas de reporte
+    private void printTables() {
+        printTokensTable();
+        printColorsTable();
+        printObjectsTable();
+        printAnimationsTable();
+    }
+
+    private void cleanTables() {
+        DefaultTableModel modelOne = (DefaultTableModel) operatorsTable.getModel();
+        DefaultTableModel modelTwo = (DefaultTableModel) colorsTable.getModel();
+        DefaultTableModel modelThree = (DefaultTableModel) objectsTable.getModel();
+        DefaultTableModel modelFour = (DefaultTableModel) animationsTable.getModel();
+
+        if (modelOne.getRowCount() > 0) {
+            modelOne.getDataVector().removeAllElements();
+        }
+
+        if (modelTwo.getRowCount() > 0) {
+            modelTwo.getDataVector().removeAllElements();
+        }
+
+        if (modelThree.getRowCount() > 0) {
+            modelThree.getDataVector().removeAllElements();
+        }
+
+        if (modelFour.getRowCount() > 0) {
+            modelFour.getDataVector().removeAllElements();
+        }
+
+    }
+
+    private void printTokensTable() {
+        DefaultTableModel model = (DefaultTableModel) operatorsTable.getModel();
+
+        Object[] row;
+
+        for (int i = 0; i < TokensList.size(); i++) {
+            row = new Object[4];
+            row[0] = TokensList.get(i).getOperator();
+            row[1] = TokensList.get(i).getLine();
+            row[2] = TokensList.get(i).getColumn();
+            row[3] = TokensList.get(i).getOcurrency();
+
+            model.addRow(row);
+        }
+    }
+
+    private void printColorsTable() {
+        int blue = 0;
+        int red = 0;
+        int yellow = 0;
+        int green = 0;
+        int black = 0;
+        int orange = 0;
+        int purple = 0;
+        int brown = 0;
+        int pink = 0;
+
+        for (int i = 0; i < ColorsList.size(); i++) {
+            switch (ColorsList.get(i)) {
+                case "azul":
+                    blue = blue + 1;
+                    break;
+                case "rojo":
+                    red = red + 1;
+                    break;
+                case "amarillo":
+                    yellow = yellow + 1;
+                    break;
+                case "verde":
+                    green = green + 1;
+                    break;
+                case "negro":
+                    black = black + 1;
+                    break;
+                case "anaranjado":
+                    orange = orange + 1;
+                    break;
+                case "morado":
+                    purple = purple + 1;
+                    break;
+                case "marron":
+                    brown = brown + 1;
+                    break;
+                case "rosado":
+                    pink = pink + 1;
+                    break;
+                default:
+                    System.out.println("Error. Token incorrecto " + ColorsList.get(i));
+                    throw new AssertionError();
+            }
+        }
+
+        DefaultTableModel model = (DefaultTableModel) colorsTable.getModel();
+
+        model.addRow(new Object[]{"Azul", blue});
+        model.addRow(new Object[]{"Rojo", red});
+        model.addRow(new Object[]{"Amarillo", yellow});
+        model.addRow(new Object[]{"Verde", green});
+        model.addRow(new Object[]{"Negro", black});
+        model.addRow(new Object[]{"Anaranjado", orange});
+        model.addRow(new Object[]{"Morado", purple});
+        model.addRow(new Object[]{"Marron", brown});
+        model.addRow(new Object[]{"Rosado", pink});
+    }
+
+    private void printObjectsTable() {
+        int circle = 0;
+        int square = 0;
+        int rectangle = 0;
+        int line = 0;
+        int polygon = 0;
+
+        for (int i = 0; i < ObjectsList.size(); i++) {
+            switch (ObjectsList.get(i)) {
+                case "circulo":
+                    circle = circle + 1;
+                    break;
+                case "cuadrado":
+                    square = square + 1;
+                    break;
+                case "rectangulo":
+                    rectangle = rectangle + 1;
+                    break;
+                case "linea":
+                    line = line + 1;
+                    break;
+                case "poligono":
+                    polygon = polygon + 1;
+                    break;
+                default:
+                    System.out.println("Error. Token incorrecto " + ObjectsList.get(i));
+                    throw new AssertionError();
+            }
+        }
+
+        DefaultTableModel model = (DefaultTableModel) objectsTable.getModel();
+
+        model.addRow(new Object[]{"Circulo", circle});
+        model.addRow(new Object[]{"Cuadrado", square});
+        model.addRow(new Object[]{"Rectangulo", rectangle});
+        model.addRow(new Object[]{"Linea", line});
+        model.addRow(new Object[]{"Poligono", polygon});
+    }
+
+    private void printAnimationsTable() {
+        int line = 0;
+        int curve = 0;
+
+        for (int i = 0; i < AnimationsList.size(); i++) {
+            switch (AnimationsList.get(i)) {
+                case "linea":
+                    line = line + 1;
+                    break;
+                case "curva":
+                    curve = curve + 1;
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) animationsTable.getModel();
+        
+        model.addRow(new Object[]{"Línea", line});
+        model.addRow(new Object[]{"Curva", curve});
     }
 
     /**
@@ -19,7 +205,6 @@ public class reports extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        returnButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -35,15 +220,13 @@ public class reports extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
-
-        returnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/practica1/assets/atras.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
         jLabel1.setText("Reportes");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/practica1/assets/boton-de-play.png"))); // NOI18N
+        jButton1.setText("Ejecutar");
 
         jLabel2.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
         jLabel2.setText("Reporte de Ocurrencias de Operadores Aritméticos");
@@ -78,10 +261,7 @@ public class reports extends javax.swing.JFrame {
 
         colorsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Color", "Cantidad de Uso"
@@ -170,8 +350,7 @@ public class reports extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(returnButton)
-                                .addGap(395, 395, 395)
+                                .addGap(474, 474, 474)
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1))
@@ -196,12 +375,11 @@ public class reports extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel1)
-                    .addComponent(returnButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -252,6 +430,5 @@ public class reports extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable objectsTable;
     private javax.swing.JTable operatorsTable;
-    private javax.swing.JButton returnButton;
     // End of variables declaration//GEN-END:variables
 }

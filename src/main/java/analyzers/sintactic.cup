@@ -1,14 +1,16 @@
 /*--------------- 1ra Area: Codigo de Usuario -----------------------*/
 //-------> importaciones, paquetes
 package analyzers;
+import logic.TError;
 import java_cup.runtime.Symbol;
 import java.util.LinkedList;
+import com.mycompany.practica1.errorReport;
+import com.mycompany.practica1.reports;
 
 //------> Codigo para el parser,variables, metodos
 parser code
 {:
     public String result="";
-    public static LinkedList<TError> TableSE = new LinkedList<TError>(); 
 
     //Metodo al que se llama automaticamente ante algun error sintactico
     public void syntax_error(Symbol s)
@@ -22,8 +24,8 @@ parser code
         System.out.println("\t\tFila: "+ line);
         System.out.println("\t\tColumna: "+ column);
 
-        TError data = new TError(lexeme,line,column,"Error Sintactico","Caracter no esperado");
-        TableSE.add(data);
+        TError data = new TError(lexeme,line,column,"Sintactico","Caracter no esperado");
+        errorReport.TableErrors.add(data);
        
         
     }
@@ -40,8 +42,8 @@ parser code
         System.out.println("\t\tFila: "+line);
         System.out.println("\t\tColumna: "+column);
 
-        TError data = new TError(lexeme,line,column,"Error Sintactico","Caracter no esperado");
-        TableSE.add(data);
+        TError data = new TError(lexeme,line,column,"Sintactico","Caracter no esperado");
+        errorReport.TableErrors.add(data);
      
     }
 :}
@@ -88,17 +90,21 @@ A::= A:a plus A:b {: int val1= Integer.parseInt(a);
     |paro A:a {: RESULT = a; :} parc
     |num:a {: RESULT = a; :};
 
-B::= paro name comma A:posx comma A:posy comma A:radius comma color parc G {: System.out.println("Cadena aceptada (Circulo o Cuadrado)");:};
+B::= paro name comma A:posx comma A:posy comma A:radius comma color:colors parc G {: System.out.println("Cadena aceptada (Circulo o Cuadrado)");
+                                                                                     reports.ColorsList.add(String.valueOf(colors));:};
 
-C::= paro name comma A comma A comma A comma A comma color parc G {: System.out.println("Cadena aceptada (Rectangulo o Linea)");:};
+C::= paro name comma A comma A comma A comma A comma color:colors parc G {: System.out.println("Cadena aceptada (Rectangulo o Linea)");
+                                                                            reports.ColorsList.add(String.valueOf(colors));:};
 
-D::= paro name comma A comma A comma A comma A comma A comma color parc G {: System.out.println("Cadena aceptada (Poligono)");:};
+D::= paro name comma A comma A comma A comma A comma A comma color:colors parc G {: System.out.println("Cadena aceptada (Poligono)");
+                                                                                    reports.ColorsList.add(String.valueOf(colors));:};
 
-E::= graph shapesone B 
-    |graph shapestwo C 
-    |graph shapesthree D;
+E::= graph shapesone:shape B {:reports.ObjectsList.add(String.valueOf(shape));:}
+    |graph shapestwo:shape C {:reports.ObjectsList.add(String.valueOf(shape));:}
+    |graph shapesthree:shape D {:reports.ObjectsList.add(String.valueOf(shape));:};
 
-F::= animate object previous paro animation comma A comma A comma A parc {: System.out.println("Instrucciones completas correctas");:};
+F::= animate object previous paro animation:anim comma A comma A comma A parc {: System.out.println("Instrucciones completas correctas");
+                                                                                reports.AnimationsList.add(String.valueOf(anim));:};
 
-G::= F
-    |E;
+G::= E
+    |F;

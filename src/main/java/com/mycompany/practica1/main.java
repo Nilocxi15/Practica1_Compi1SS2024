@@ -106,11 +106,13 @@ public class main extends javax.swing.JFrame {
             }
 
             if (EReport.errorsLenght() == 0) {
-                System.out.println("No contiene errores el código");
+                reports reportsWindow = new reports();
+                reportsWindow.setVisible(true);
+                reportsWindow.setLocationRelativeTo(null);
             } else {
-                System.out.println("Entra en el if");
                 EReport.setVisible(true);
                 EReport.setLocationRelativeTo(null);
+                EReport.cleanTable();
                 EReport.printTable();
                 EReport.cleanList();
             }

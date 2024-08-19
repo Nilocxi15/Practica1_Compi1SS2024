@@ -1,4 +1,4 @@
-package analyzers;
+package logic;
 
 public class TError {
     String lexeme, type, description;
