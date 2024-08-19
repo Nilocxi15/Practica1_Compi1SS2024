@@ -27,9 +27,6 @@ WhiteSpace     = {LineTerminator} | [ \t\f]
 NameRules = [A-Za-z] | [0-9] | "_"
 Name = {NameRules}+
 Color = "azul" | "rojo" | "amarillo" | "verde" | "negro" | "anaranjado" | "morado" | "marron" | "rosado"
-ShapesOne = "circulo" | "cuadrado"
-ShapesTwo = "rectangulo" | "linea"
-ShapesThree = "poligono"
 Animation = "línea" | "curva"
 
 //------> Estados
@@ -51,14 +48,16 @@ Animation = "línea" | "curva"
 <YYINITIAL> "animar"    { System.out.println("Reconocio "+yytext()+" animar"); return new Symbol(Symbols.animate, (yycolumn + 1), (yyline + 1), yytext()); }
 <YYINITIAL> "objeto"    { System.out.println("Reconocio "+yytext()+" objeto"); return new Symbol(Symbols.object, (yycolumn + 1), (yyline + 1), yytext()); }
 <YYINITIAL> "anterior"  { System.out.println("Reconocio "+yytext()+" anterior"); return new Symbol(Symbols.previous, (yycolumn + 1), (yyline + 1), yytext()); }
+<YYINITIAL> "circulo"   { System.out.println("Reconocio "+yytext()+" figura"); return new Symbol(Symbols.circle, (yycolumn + 1), (yyline + 1), yytext()); }
+<YYINITIAL> "cuadrado"  { System.out.println("Reconocio "+yytext()+" figura"); return new Symbol(Symbols.square, (yycolumn + 1), (yyline + 1), yytext()); }
+<YYINITIAL> "rectangulo" { System.out.println("Reconocio "+yytext()+" figura"); return new Symbol(Symbols.rectangle, (yycolumn + 1), (yyline + 1), yytext()); }
+<YYINITIAL> "linea"     { System.out.println("Reconocio "+yytext()+" figura"); return new Symbol(Symbols.line, (yycolumn + 1), (yyline + 1), yytext()); }
+<YYINITIAL> "poligono"  { System.out.println("Reconocio "+yytext()+" figura"); return new Symbol(Symbols.polygon, (yycolumn + 1), (yyline + 1), yytext()); }
 
 
 //-------> Simbolos ER
 <YYINITIAL> {Animation} { System.out.println("Reconocio "+yytext()+" animacion"); return new Symbol(Symbols.animation, (yycolumn + 1), (yyline + 1), yytext()); }
 <YYINITIAL> {Color}     { System.out.println("Reconocio "+yytext()+" color"); return new Symbol(Symbols.color, (yycolumn + 1), (yyline + 1), yytext()); }
-<YYINITIAL> {ShapesOne} { System.out.println("Reconocio "+yytext()+" circulo o cuadrado"); return new Symbol(Symbols.shapesone, (yycolumn + 1), (yyline + 1), yytext()); }
-<YYINITIAL> {ShapesTwo} { System.out.println("Reconocio "+yytext()+" rectangulo o linea"); return new Symbol(Symbols.shapestwo, (yycolumn + 1), (yyline + 1), yytext()); }
-<YYINITIAL> {ShapesThree} { System.out.println("Reconocio "+yytext()+" poligono"); return new Symbol(Symbols.shapesthree, (yycolumn + 1), (yyline + 1), yytext()); }
 <YYINITIAL> {number}    { System.out.println("Reconocio "+yytext()+" num"); return new Symbol(Symbols.num, (yycolumn + 1), (yyline + 1), yytext()); }
 <YYINITIAL> {Name}    { System.out.println("Reconocio "+yytext()+" nombre"); return new Symbol(Symbols.name, (yycolumn + 1), (yyline + 1), yytext()); }
 

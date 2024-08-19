@@ -12,22 +12,24 @@ public class Symbols {
   public static final int graph = 8;
   public static final int minus = 3;
   public static final int previous = 11;
+  public static final int circle = 13;
   public static final int animate = 9;
-  public static final int num = 18;
-  public static final int shapesone = 13;
+  public static final int num = 20;
   public static final int times = 4;
+  public static final int line = 16;
+  public static final int polygon = 17;
   public static final int EOF = 0;
-  public static final int shapesthree = 15;
+  public static final int square = 14;
   public static final int split = 5;
-  public static final int color = 17;
+  public static final int color = 19;
   public static final int error = 1;
   public static final int paro = 6;
   public static final int plus = 2;
   public static final int animation = 12;
-  public static final int comma = 19;
+  public static final int comma = 21;
+  public static final int rectangle = 15;
   public static final int object = 10;
-  public static final int shapestwo = 14;
-  public static final int name = 16;
+  public static final int name = 18;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -42,9 +44,11 @@ public class Symbols {
   "object",
   "previous",
   "animation",
-  "shapesone",
-  "shapestwo",
-  "shapesthree",
+  "circle",
+  "square",
+  "rectangle",
+  "line",
+  "polygon",
   "name",
   "color",
   "num",

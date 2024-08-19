@@ -56,11 +56,11 @@ action code
 /*--------------- 2da Area: Declaraciones -----------------------*/
 //------> declaracion de terminales 
 terminal plus,minus,times,split,paro,parc,graph,animate,object,previous,animation,
-         shapesone,shapestwo,shapesthree,name,color;
+         circle,square,rectangle,line,polygon,name,color;
 terminal String num, comma;
 
 //------> declaracion de no terminales
-non terminal String S,A,B,C,D,E,F,G,H;
+non terminal String S,A,B,C,E,F,G,H;
 
 //----> precedencia de menor a mayor 
 precedence left plus, minus;
@@ -90,21 +90,34 @@ A::= A:a plus A:b {: int val1= Integer.parseInt(a);
     |paro A:a {: RESULT = a; :} parc
     |num:a {: RESULT = a; :};
 
-B::= paro name comma A:posx comma A:posy comma A:radius comma color:colors parc G {: System.out.println("Cadena aceptada (Circulo o Cuadrado)");
-                                                                                     reports.ColorsList.add(String.valueOf(colors));:};
+B::= circle paro name:nameObject comma A:posx comma A:posy comma A:numbOne comma color:colors parc G 
+     {:System.out.println("Cadena aceptada (Circulo)");
+      reports.ObjectsList.add("circulo");
+      reports.ColorsList.add(String.valueOf(colors));:}
+     |square paro name:nameObject comma A:posx comma A:posy comma A:numbOne comma color:colors parc G 
+     {:System.out.println("Cadena aceptada (Cuadrado)");
+      reports.ObjectsList.add("cuadrado");
+      reports.ColorsList.add(String.valueOf(colors));:}
+     |rectangle paro name:nameObject comma A:posx comma A:posy comma A:numbOne comma A:numbTwo comma color:colors parc G 
+     {:System.out.println("Cadena aceptada (Rectangulo)");
+      reports.ObjectsList.add("rectangulo");
+      reports.ColorsList.add(String.valueOf(colors));:}
+     |line paro name:nameObject comma A:posx comma A:posy comma A:numbOne comma A:numbTwo comma color:colors parc G 
+     {:System.out.println("Cadena aceptada (Linea)");
+      reports.ObjectsList.add("linea");
+      reports.ColorsList.add(String.valueOf(colors));:};
 
-C::= paro name comma A comma A comma A comma A comma color:colors parc G {: System.out.println("Cadena aceptada (Rectangulo o Linea)");
-                                                                            reports.ColorsList.add(String.valueOf(colors));:};
+C::= paro name comma A comma A comma A comma A comma A comma color:colors parc G 
+     {:System.out.println("Cadena aceptada (Poligono)");
+       reports.ObjectsList.add("poligono");
+       reports.ColorsList.add(String.valueOf(colors));:};
 
-D::= paro name comma A comma A comma A comma A comma A comma color:colors parc G {: System.out.println("Cadena aceptada (Poligono)");
-                                                                                    reports.ColorsList.add(String.valueOf(colors));:};
+E::= graph B
+    |graph polygon C;
 
-E::= graph shapesone:shape B {:reports.ObjectsList.add(String.valueOf(shape));:}
-    |graph shapestwo:shape C {:reports.ObjectsList.add(String.valueOf(shape));:}
-    |graph shapesthree:shape D {:reports.ObjectsList.add(String.valueOf(shape));:};
-
-F::= E animate object previous paro animation:anim comma A comma A comma A parc H {: System.out.println("Instrucciones completas correctas");
-                                                                                    reports.AnimationsList.add(String.valueOf(anim));:};
+F::= E animate object previous paro animation:anim comma A comma A comma A parc H 
+    {:System.out.println("Instrucciones completas correctas");
+      reports.AnimationsList.add(String.valueOf(anim));:};
 
 G::= E
     | /* Lambda */;

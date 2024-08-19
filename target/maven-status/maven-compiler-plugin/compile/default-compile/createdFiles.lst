@@ -1,12 +1,15 @@
 logic\lineNumber$1.class
 analyzers\Symbols.class
+logic\polygon.class
 com\mycompany\practica1\main$1.class
 com\mycompany\practica1\reports$5.class
 logic\TTokens.class
 com\mycompany\practica1\errorReport$1.class
 com\mycompany\practica1\main.class
+logic\shapesTwo.class
 com\mycompany\practica1\errorReport$2.class
 com\mycompany\practica1\reports.class
+logic\shapesOne.class
 analyzers\L_Analyzer.class
 analyzers\S_Analyzer$CUP$S_Analyzer$actions.class
 com\mycompany\practica1\reports$2.class

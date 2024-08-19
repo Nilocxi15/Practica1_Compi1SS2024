@@ -1,8 +1,8 @@
 package logic;
 
 public class TError {
-    String lexeme, type, description;
-    int line, column;
+    private String lexeme, type, description;
+    private int line, column;
 
     public TError(String lexeme, int line, int column, String type, String description) {
         this.lexeme = lexeme;
