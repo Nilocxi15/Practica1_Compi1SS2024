@@ -176,21 +176,53 @@ B::= circle paro name:nameObject comma A:posx comma A:posy comma A:numbOne comma
      |square paro name:nameObject comma A:posx comma A:posy comma A:numbOne comma color:colors parc G 
      {:System.out.println("Cadena aceptada (Cuadrado)");
       reports.ObjectsList.add("cuadrado");
-      reports.ColorsList.add(String.valueOf(colors));:}
+      reports.ColorsList.add(String.valueOf(colors));
+      String name = String.valueOf(nameObject);
+      String color = String.valueOf(colors);
+      double px = Double.parseDouble(posx);
+      double py = Double.parseDouble(posy);
+      double size = Double.parseDouble(numbOne);
+      square data = new square(name, color, px, py, size);
+      shapes.squareShapes.add(data);:}
      |rectangle paro name:nameObject comma A:posx comma A:posy comma A:numbOne comma A:numbTwo comma color:colors parc G 
      {:System.out.println("Cadena aceptada (Rectangulo)");
       reports.ObjectsList.add("rectangulo");
-      reports.ColorsList.add(String.valueOf(colors));:}
+      reports.ColorsList.add(String.valueOf(colors));
+      String name = String.valueOf(nameObject);
+      String color = String.valueOf(colors);
+      double px = Double.parseDouble(posx);
+      double py = Double.parseDouble(posy);
+      double width = Double.parseDouble(numbOne);
+      double height = Double.parseDouble(numbTwo);
+      rectangle data = new rectangle(name, color, px, py, width, height);
+      shapes.rectangleShapes.add(data);:}
      |line paro name:nameObject comma A:posx comma A:posy comma A:numbOne comma A:numbTwo comma color:colors parc G 
      {:System.out.println("Cadena aceptada (Linea)");
       reports.ObjectsList.add("linea");
-      reports.ColorsList.add(String.valueOf(colors));:}
+      reports.ColorsList.add(String.valueOf(colors));
+      String name = String.valueOf(nameObject);
+      String color = String.valueOf(colors);
+      double px = Double.parseDouble(posx);
+      double py = Double.parseDouble(posy);
+      double px2 = Double.parseDouble(numbOne);
+      double py2 = Double.parseDouble(numbTwo);
+      line data = new line(name, color, px, py, px2, py2);
+      shapes.lineShapes.add(data);:}
      |error B;
 
-C::= polygon paro name comma A comma A comma A comma A comma A comma color:colors parc G 
+C::= polygon paro name:nameObject comma A:posx comma A:posy comma A:sides comma A:numbOne comma A:numbTwo comma color:colors parc G 
      {:System.out.println("Cadena aceptada (Poligono)");
        reports.ObjectsList.add("poligono");
-       reports.ColorsList.add(String.valueOf(colors));:}
+       reports.ColorsList.add(String.valueOf(colors));
+      String name = String.valueOf(nameObject);
+      String color = String.valueOf(colors);
+      double px = Double.parseDouble(posx);
+      double py = Double.parseDouble(posy);
+      int numSides = Integer.parseInt(sides);
+      double width = Double.parseDouble(numbOne);
+      double height = Double.parseDouble(numbTwo);
+      polygon data = new polygon(name, color, px, py, numSides, width, height);
+      shapes.polygonShapes.add(data);:}
     |error C;
 
 E::= graph B

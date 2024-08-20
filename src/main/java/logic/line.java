@@ -2,9 +2,9 @@ package logic;
 
 public class line {
     private String name, color;
-    private int posx, posy, posxfinal, posyfinal;
+    private double posx, posy, posxfinal, posyfinal;
 
-    public line(String name, String color, int posx, int posy, int posxfinal, int posyfinal) {
+    public line(String name, String color, double posx, double posy, double posxfinal, double posyfinal) {
         this.name = name;
         this.color = color;
         this.posx = posx;
@@ -21,19 +21,19 @@ public class line {
         return color;
     }
 
-    public int getPosx() {
+    public double getPosx() {
         return posx;
     }
 
-    public int getPosy() {
+    public double getPosy() {
         return posy;
     }
 
-    public int getPosxfinal() {
+    public double getPosxfinal() {
         return posxfinal;
     }
 
-    public int getPosyfinal() {
+    public double getPosyfinal() {
         return posyfinal;
     }
     

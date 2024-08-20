@@ -534,6 +534,13 @@ class CUP$S_Analyzer$actions {
 		System.out.println("Cadena aceptada (Cuadrado)");
       reports.ObjectsList.add("cuadrado");
       reports.ColorsList.add(String.valueOf(colors));
+      String name = String.valueOf(nameObject);
+      String color = String.valueOf(colors);
+      double px = Double.parseDouble(posx);
+      double py = Double.parseDouble(posy);
+      double size = Double.parseDouble(numbOne);
+      square data = new square(name, color, px, py, size);
+      shapes.squareShapes.add(data);
               CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("B",1, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-12)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
             }
           return CUP$S_Analyzer$result;
@@ -563,6 +570,14 @@ class CUP$S_Analyzer$actions {
 		System.out.println("Cadena aceptada (Rectangulo)");
       reports.ObjectsList.add("rectangulo");
       reports.ColorsList.add(String.valueOf(colors));
+      String name = String.valueOf(nameObject);
+      String color = String.valueOf(colors);
+      double px = Double.parseDouble(posx);
+      double py = Double.parseDouble(posy);
+      double width = Double.parseDouble(numbOne);
+      double height = Double.parseDouble(numbTwo);
+      rectangle data = new rectangle(name, color, px, py, width, height);
+      shapes.rectangleShapes.add(data);
               CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("B",1, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-14)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
             }
           return CUP$S_Analyzer$result;
@@ -592,6 +607,14 @@ class CUP$S_Analyzer$actions {
 		System.out.println("Cadena aceptada (Linea)");
       reports.ObjectsList.add("linea");
       reports.ColorsList.add(String.valueOf(colors));
+      String name = String.valueOf(nameObject);
+      String color = String.valueOf(colors);
+      double px = Double.parseDouble(posx);
+      double py = Double.parseDouble(posy);
+      double px2 = Double.parseDouble(numbOne);
+      double py2 = Double.parseDouble(numbTwo);
+      line data = new line(name, color, px, py, px2, py2);
+      shapes.lineShapes.add(data);
               CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("B",1, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-14)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
             }
           return CUP$S_Analyzer$result;
@@ -609,12 +632,39 @@ class CUP$S_Analyzer$actions {
           case 13: // C ::= polygon paro name comma A comma A comma A comma A comma A comma color parc G 
             {
               String RESULT =null;
+		int nameObjectleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-14)).left;
+		int nameObjectright = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-14)).right;
+		Object nameObject = (Object)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-14)).value;
+		int posxleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-12)).left;
+		int posxright = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-12)).right;
+		String posx = (String)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-12)).value;
+		int posyleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-10)).left;
+		int posyright = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-10)).right;
+		String posy = (String)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-10)).value;
+		int sidesleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-8)).left;
+		int sidesright = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-8)).right;
+		String sides = (String)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-8)).value;
+		int numbOneleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-6)).left;
+		int numbOneright = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-6)).right;
+		String numbOne = (String)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-6)).value;
+		int numbTwoleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-4)).left;
+		int numbTworight = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-4)).right;
+		String numbTwo = (String)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-4)).value;
 		int colorsleft = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)).left;
 		int colorsright = ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)).right;
 		Object colors = (Object)((java_cup.runtime.Symbol) CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-2)).value;
 		System.out.println("Cadena aceptada (Poligono)");
        reports.ObjectsList.add("poligono");
        reports.ColorsList.add(String.valueOf(colors));
+      String name = String.valueOf(nameObject);
+      String color = String.valueOf(colors);
+      double px = Double.parseDouble(posx);
+      double py = Double.parseDouble(posy);
+      int numSides = Integer.parseInt(sides);
+      double width = Double.parseDouble(numbOne);
+      double height = Double.parseDouble(numbTwo);
+      polygon data = new polygon(name, color, px, py, numSides, width, height);
+      shapes.polygonShapes.add(data);
               CUP$S_Analyzer$result = parser.getSymbolFactory().newSymbol("C",2, ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.elementAt(CUP$S_Analyzer$top-16)), ((java_cup.runtime.Symbol)CUP$S_Analyzer$stack.peek()), RESULT);
             }
           return CUP$S_Analyzer$result;

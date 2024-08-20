@@ -1,6 +1,7 @@
 package com.mycompany.practica1;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.LinkedList;
 import logic.circle;
@@ -34,24 +35,68 @@ public class shapes extends javax.swing.JFrame {
         if (iteration == 1) {
             if (circleShapes.size() > 0) {
                 for (int i = 0; i < circleShapes.size(); i++) {
-                    System.out.println("Si hay circulo");
+                    System.out.println("Color: " + circleShapes.get(i).getColor());
+                    g.setColor(Color.BLACK);
+                    g.drawString(circleShapes.get(i).getName(), (int) circleShapes.get(i).getPosx(),
+                            (int) circleShapes.get(i).getPosy());
+                    switch (circleShapes.get(i).getColor()) {
+                        case "azul":
+                            g.setColor(Color.BLUE);
+                            break;
+                        case "rojo":
+                            g.setColor(Color.RED);
+                            break;
+                        case "amarillo":
+                            g.setColor(Color.YELLOW);
+                            break;
+                        case "verde":
+                            g.setColor(Color.GREEN);
+                            break;
+                        case "negro":
+                            g.setColor(Color.BLUE);
+                            break;
+                        case "anaranjado":
+                            g.setColor(Color.ORANGE);
+                            break;
+                        case "morado":
+                            g.setColor(new Color(128, 0, 128));
+                            break;
+                        case "marron":
+                            g.setColor(new Color(139, 69, 19));
+                            break;
+                        case "rosado":
+                            g.setColor(Color.PINK);
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
+                    g.drawOval((int) circleShapes.get(i).getPosx(), (int) circleShapes.get(i).getPosy(),
+                            (int) circleShapes.get(i).getRadius(), (int) circleShapes.get(i).getRadius());
                 }
             }
-            
+
             if (squareShapes.size() > 0) {
-                
+                for (int i = 0; i < squareShapes.size(); i++) {
+                    System.out.println("Si hay cuadrados");
+                }
             }
-            
+
             if (rectangleShapes.size() > 0) {
-                
+                for (int i = 0; i < rectangleShapes.size(); i++) {
+                    System.out.println("Si hay rectangulos");
+                }
             }
-            
+
             if (lineShapes.size() > 0) {
-                
+                for (int i = 0; i < lineShapes.size(); i++) {
+                    System.out.println("Si hay lineas");
+                }
             }
-            
+
             if (polygonShapes.size() > 0) {
-                
+                for (int i = 0; i < polygonShapes.size(); i++) {
+                    System.out.println("Si hay poligonos");
+                }
             }
         }
     }

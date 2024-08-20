@@ -2,9 +2,10 @@ package logic;
 
 public class polygon {
     private String name, color;
-    private int posx, posy, sides, width, height;
+    private double posx, posy, width, height;
+    private int sides;
 
-    public polygon(String name, String color, int posx, int posy, int sides, int width, int height) {
+    public polygon(String name, String color, double posx, double posy, int sides, double width, double height) {
         this.name = name;
         this.color = color;
         this.posx = posx;
@@ -22,23 +23,23 @@ public class polygon {
         return color;
     }
 
-    public int getPosx() {
+    public double getPosx() {
         return posx;
     }
 
-    public int getPosy() {
+    public double getPosy() {
         return posy;
     }
 
-    public int getSides() {
+    public double getSides() {
         return sides;
     }
 
-    public int getWidth() {
+    public double getWidth() {
         return width;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 }
