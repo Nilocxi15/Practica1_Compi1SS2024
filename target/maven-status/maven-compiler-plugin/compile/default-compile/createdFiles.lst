@@ -9,10 +9,13 @@ com\mycompany\practica1\reports.class
 analyzers\S_Analyzer$CUP$S_Analyzer$actions.class
 com\mycompany\practica1\shapes$1.class
 analyzers\S_Analyzer.class
+com\mycompany\practica1\main$4.class
 com\mycompany\practica1\reports$3.class
+logic\filesManager.class
 com\mycompany\practica1\main$2.class
 logic\square.class
 logic\polygon.class
+com\mycompany\practica1\main$5.class
 com\mycompany\practica1\reports$6.class
 com\mycompany\practica1\main.class
 com\mycompany\practica1\errorReport$2.class
@@ -21,6 +24,7 @@ com\mycompany\practica1\reports$2.class
 logic\line.class
 logic\rectangle.class
 com\mycompany\practica1\errorReport.class
+com\mycompany\practica1\main$3.class
 com\mycompany\practica1\shapes$2.class
 com\mycompany\practica1\reports$1.class
 logic\circle.class

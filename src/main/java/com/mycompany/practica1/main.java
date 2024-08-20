@@ -4,11 +4,18 @@ import analyzers.L_Analyzer;
 import analyzers.S_Analyzer;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.StringReader;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import logic.filesManager;
 import logic.lineNumber;
 
 public class main extends javax.swing.JFrame {
+
+    JFileChooser choosed = new JFileChooser();
+    File file;
+    filesManager management = new filesManager();
 
     lineNumber lineNumb;
     errorReport EReport = new errorReport();
@@ -33,10 +40,13 @@ public class main extends javax.swing.JFrame {
     private void initComponents() {
 
         compileButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         codeScrollPane = new javax.swing.JScrollPane();
         codeTextPane = new javax.swing.JTextPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        newButton = new javax.swing.JMenuItem();
+        openButton = new javax.swing.JMenuItem();
+        saveButton = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -49,14 +59,41 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Poppins", 0, 18)); // NOI18N
-        jLabel1.setText("Línea:");
-
-        jLabel2.setFont(new java.awt.Font("Poppins", 0, 18)); // NOI18N
-        jLabel2.setText("Columna:");
-
         codeTextPane.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         codeScrollPane.setViewportView(codeTextPane);
+
+        jMenu1.setText("Archivo");
+
+        newButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        newButton.setText("Nuevo");
+        newButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newButtonActionPerformed(evt);
+            }
+        });
+        jMenu1.add(newButton);
+
+        openButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        openButton.setText("Abrir");
+        openButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openButtonActionPerformed(evt);
+            }
+        });
+        jMenu1.add(openButton);
+
+        saveButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        saveButton.setText("Guardar");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+        jMenu1.add(saveButton);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,27 +101,19 @@ public class main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(codeScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(compileButton)
-                        .addGap(150, 150, 150)
-                        .addComponent(jLabel1)
-                        .addGap(156, 156, 156)
-                        .addComponent(jLabel2)))
+                    .addComponent(compileButton))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(compileButton)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                .addComponent(compileButton)
                 .addGap(18, 18, 18)
                 .addComponent(codeScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -126,6 +155,40 @@ public class main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_compileButtonActionPerformed
 
+    private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
+        // TODO add your handling code here:
+        codeTextPane.setText(null);
+    }//GEN-LAST:event_newButtonActionPerformed
+
+    private void openButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openButtonActionPerformed
+        // TODO add your handling code here:
+        if (choosed.showDialog(null, "Abrir archivo") == JFileChooser.APPROVE_OPTION) {
+            file = choosed.getSelectedFile();
+            if (file.canRead()) {
+                if (file.getName().endsWith(".txt")) {
+                    String content = management.openFile(file);
+                    codeTextPane.setText(content);
+                }
+            }
+        }
+    }//GEN-LAST:event_openButtonActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        // TODO add your handling code here:
+        if (choosed.showDialog(null, "Guardar archivo") == JFileChooser.APPROVE_OPTION) {
+            file = choosed.getSelectedFile();
+            if (file.getName().endsWith(".txt")) {
+                String content = codeTextPane.getText();
+                String response = management.saveFile(file, content);
+                if (response != null) {
+                    JOptionPane.showMessageDialog(null, response);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo guardar el archivo", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_saveButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -144,7 +207,10 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JScrollPane codeScrollPane;
     private javax.swing.JTextPane codeTextPane;
     private javax.swing.JButton compileButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem newButton;
+    private javax.swing.JMenuItem openButton;
+    private javax.swing.JMenuItem saveButton;
     // End of variables declaration//GEN-END:variables
 }

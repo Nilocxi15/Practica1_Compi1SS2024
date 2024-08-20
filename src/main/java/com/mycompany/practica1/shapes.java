@@ -254,7 +254,6 @@ public class shapes extends javax.swing.JFrame {
                     for (int j = 0; j < sides; j++) {
                         pointsx[j] = posx + (int) ((width / 2.0) * Math.cos(2 * Math.PI * j / sides));
                         pointsy[j] = posy + (int) ((height / 2.0) * Math.sin(2 * Math.PI * j / sides));
-                        System.out.println("Coordenada (" + pointsx[j] + "," + pointsy[j] + ")");
                     }
 
                     g.fillPolygon(pointsx, pointsy, sides);
