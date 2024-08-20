@@ -1,11 +1,10 @@
 /*--------------- 1ra Area: Codigo de Usuario -----------------------*/
 //-------> importaciones, paquetes
 package analyzers;
-import logic.TError;
+import logic.*;
 import java_cup.runtime.Symbol;
 import java.util.LinkedList;
-import com.mycompany.practica1.errorReport;
-import com.mycompany.practica1.reports;
+import com.mycompany.practica1.*;
 
 //------> Codigo para el parser,variables, metodos
 parser code
@@ -114,7 +113,7 @@ terminal plus,minus,times,split,paro,parc,graph,animate,object,previous,animatio
 terminal String num, comma;
 
 //------> declaracion de no terminales
-non terminal String S,A,B,C,E,F,G,H;
+non terminal String A,B,C,E,F,G,H;
 
 //----> precedencia de menor a mayor 
 precedence left plus, minus;
@@ -123,31 +122,57 @@ precedence left times, split;
 start with F;
 
 /*--------------- 3ra Area: Reglas Semanticas -----------------------*/
-S::=E;
 
-A::= A:a plus A:b {: int val1= Integer.parseInt(a);
-                    int val2= Integer.parseInt(b);
+A::= A:a plus A:b {:double val1= Double.parseDouble(a);
+                    double val2= Double.parseDouble(b);
                     double r = val1+val2;
-                    RESULT = String.valueOf(r); :}
-    |A:a minus A:b {: int val1= Integer.parseInt(a);
-                    int val2= Integer.parseInt(b);
+                    RESULT = String.valueOf(r);
+                    String ocurrency = String.valueOf(a) + " + " + String.valueOf(b);
+                    int line = cur_token.right;
+                    int column = cur_token.left;
+                    TTokens data = new TTokens("Suma", ocurrency, line, column);
+                    reports.TokensList.add(data);:}
+    |A:a minus A:b {:double val1= Double.parseDouble(a);
+                    double val2= Double.parseDouble(b);
                     double r = val1-val2;
-                    RESULT = String.valueOf(r); :}
-    |A:a split A:b {: int val1= Integer.parseInt(a);
-                    int val2= Integer.parseInt(b);
+                    RESULT = String.valueOf(r);
+                    String ocurrency = String.valueOf(a) + " - " + String.valueOf(b);
+                    int line = cur_token.right;
+                    int column = cur_token.left;
+                    TTokens data = new TTokens("Resta", ocurrency, line, column);
+                    reports.TokensList.add(data); :}
+    |A:a split A:b {:double val1= Double.parseDouble(a);
+                    double val2= Double.parseDouble(b);
                     double r = val1/val2;
-                    RESULT = String.valueOf(r); :}
-    |A:a times A:b {: int val1= Integer.parseInt(a);
-                    int val2= Integer.parseInt(b);
+                    RESULT = String.valueOf(r);
+                    String ocurrency = String.valueOf(a) + " / " + String.valueOf(b);
+                    int line = cur_token.right;
+                    int column = cur_token.left;
+                    TTokens data = new TTokens("División", ocurrency, line, column);
+                    reports.TokensList.add(data); :}
+    |A:a times A:b {:double val1= Double.parseDouble(a);
+                    double val2= Double.parseDouble(b);
                     double r = val1*val2;
-                    RESULT = String.valueOf(r); :}
+                    RESULT = String.valueOf(r); 
+                    String ocurrency = String.valueOf(a) + " * " + String.valueOf(b);
+                    int line = cur_token.right;
+                    int column = cur_token.left;
+                    TTokens data = new TTokens("Multiplicación", ocurrency, line, column);
+                    reports.TokensList.add(data);:}
     |paro A:a {: RESULT = a; :} parc
     |num:a {: RESULT = a; :};
 
 B::= circle paro name:nameObject comma A:posx comma A:posy comma A:numbOne comma color:colors parc G 
      {:System.out.println("Cadena aceptada (Circulo)");
       reports.ObjectsList.add("circulo");
-      reports.ColorsList.add(String.valueOf(colors));:}
+      reports.ColorsList.add(String.valueOf(colors));
+      String name = String.valueOf(nameObject);
+      String color = String.valueOf(colors);
+      double px = Double.parseDouble(posx);
+      double py = Double.parseDouble(posy);
+      double radius = Double.parseDouble(numbOne);
+      circle data = new circle(name, color, px, py, radius);
+      shapes.circleShapes.add(data);:}
      |square paro name:nameObject comma A:posx comma A:posy comma A:numbOne comma color:colors parc G 
      {:System.out.println("Cadena aceptada (Cuadrado)");
       reports.ObjectsList.add("cuadrado");

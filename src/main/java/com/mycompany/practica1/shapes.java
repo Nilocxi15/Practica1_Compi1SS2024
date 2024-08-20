@@ -34,7 +34,7 @@ public class shapes extends javax.swing.JFrame {
         if (iteration == 1) {
             if (circleShapes.size() > 0) {
                 for (int i = 0; i < circleShapes.size(); i++) {
-                    
+                    System.out.println("Si hay circulo");
                 }
             }
             
@@ -79,7 +79,7 @@ public class shapes extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
