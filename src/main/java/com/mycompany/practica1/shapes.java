@@ -33,12 +33,10 @@ public class shapes extends javax.swing.JFrame {
         iteration = iteration + 1;
 
         if (iteration == 1) {
+
             if (circleShapes.size() > 0) {
                 for (int i = 0; i < circleShapes.size(); i++) {
-                    System.out.println("Color: " + circleShapes.get(i).getColor());
-                    g.setColor(Color.BLACK);
-                    g.drawString(circleShapes.get(i).getName(), (int) circleShapes.get(i).getPosx(),
-                            (int) circleShapes.get(i).getPosy());
+
                     switch (circleShapes.get(i).getColor()) {
                         case "azul":
                             g.setColor(Color.BLUE);
@@ -53,7 +51,7 @@ public class shapes extends javax.swing.JFrame {
                             g.setColor(Color.GREEN);
                             break;
                         case "negro":
-                            g.setColor(Color.BLUE);
+                            g.setColor(Color.BLACK);
                             break;
                         case "anaranjado":
                             g.setColor(Color.ORANGE);
@@ -70,35 +68,212 @@ public class shapes extends javax.swing.JFrame {
                         default:
                             throw new AssertionError();
                     }
-                    g.drawOval((int) circleShapes.get(i).getPosx(), (int) circleShapes.get(i).getPosy(),
+                    g.fillOval((int) circleShapes.get(i).getPosx(), (int) circleShapes.get(i).getPosy(),
                             (int) circleShapes.get(i).getRadius(), (int) circleShapes.get(i).getRadius());
+
+                    g.setColor(Color.BLACK);
+                    g.drawString(circleShapes.get(i).getName(), (int) circleShapes.get(i).getPosx(),
+                            (int) circleShapes.get(i).getPosy());
                 }
             }
 
             if (squareShapes.size() > 0) {
                 for (int i = 0; i < squareShapes.size(); i++) {
-                    System.out.println("Si hay cuadrados");
+
+                    switch (squareShapes.get(i).getColor()) {
+                        case "azul":
+                            g.setColor(Color.BLUE);
+                            break;
+                        case "rojo":
+                            g.setColor(Color.RED);
+                            break;
+                        case "amarillo":
+                            g.setColor(Color.YELLOW);
+                            break;
+                        case "verde":
+                            g.setColor(Color.GREEN);
+                            break;
+                        case "negro":
+                            g.setColor(Color.BLACK);
+                            break;
+                        case "anaranjado":
+                            g.setColor(Color.ORANGE);
+                            break;
+                        case "morado":
+                            g.setColor(new Color(128, 0, 128));
+                            break;
+                        case "marron":
+                            g.setColor(new Color(139, 69, 19));
+                            break;
+                        case "rosado":
+                            g.setColor(Color.PINK);
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
+                    g.fillRect((int) squareShapes.get(i).getPosx(), (int) squareShapes.get(i).getPosy(),
+                            (int) squareShapes.get(i).getLenght(), (int) squareShapes.get(i).getLenght());
+
+                    g.setColor(Color.BLACK);
+                    g.drawString(squareShapes.get(i).getName(), (int) squareShapes.get(i).getPosx(),
+                            (int) squareShapes.get(i).getPosy());
                 }
+
             }
 
             if (rectangleShapes.size() > 0) {
                 for (int i = 0; i < rectangleShapes.size(); i++) {
-                    System.out.println("Si hay rectangulos");
+
+                    switch (rectangleShapes.get(i).getColor()) {
+                        case "azul":
+                            g.setColor(Color.BLUE);
+                            break;
+                        case "rojo":
+                            g.setColor(Color.RED);
+                            break;
+                        case "amarillo":
+                            g.setColor(Color.YELLOW);
+                            break;
+                        case "verde":
+                            g.setColor(Color.GREEN);
+                            break;
+                        case "negro":
+                            g.setColor(Color.BLACK);
+                            break;
+                        case "anaranjado":
+                            g.setColor(Color.ORANGE);
+                            break;
+                        case "morado":
+                            g.setColor(new Color(128, 0, 128));
+                            break;
+                        case "marron":
+                            g.setColor(new Color(139, 69, 19));
+                            break;
+                        case "rosado":
+                            g.setColor(Color.PINK);
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
+                    g.fillRect((int) rectangleShapes.get(i).getPosx(), (int) rectangleShapes.get(i).getPosx(),
+                            (int) rectangleShapes.get(i).getWidth(), (int) rectangleShapes.get(i).getHeight());
+
+                    g.setColor(Color.BLACK);
+                    g.drawString(rectangleShapes.get(i).getName(), (int) rectangleShapes.get(i).getPosx(),
+                            (int) rectangleShapes.get(i).getPosy());
                 }
             }
 
             if (lineShapes.size() > 0) {
                 for (int i = 0; i < lineShapes.size(); i++) {
-                    System.out.println("Si hay lineas");
+
+                    switch (lineShapes.get(i).getColor()) {
+                        case "azul":
+                            g.setColor(Color.BLUE);
+                            break;
+                        case "rojo":
+                            g.setColor(Color.RED);
+                            break;
+                        case "amarillo":
+                            g.setColor(Color.YELLOW);
+                            break;
+                        case "verde":
+                            g.setColor(Color.GREEN);
+                            break;
+                        case "negro":
+                            g.setColor(Color.BLACK);
+                            break;
+                        case "anaranjado":
+                            g.setColor(Color.ORANGE);
+                            break;
+                        case "morado":
+                            g.setColor(new Color(128, 0, 128));
+                            break;
+                        case "marron":
+                            g.setColor(new Color(139, 69, 19));
+                            break;
+                        case "rosado":
+                            g.setColor(Color.PINK);
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
+                    g.drawLine((int) lineShapes.get(i).getPosx(), (int) lineShapes.get(i).getPosy(),
+                            (int) lineShapes.get(i).getPosxfinal(), (int) lineShapes.get(i).getPosyfinal());
+
+                    g.setColor(Color.BLACK);
+                    g.drawString(lineShapes.get(i).getName(), (int) lineShapes.get(i).getPosx(),
+                            (int) lineShapes.get(i).getPosy());
                 }
             }
 
             if (polygonShapes.size() > 0) {
                 for (int i = 0; i < polygonShapes.size(); i++) {
-                    System.out.println("Si hay poligonos");
+
+                    switch (polygonShapes.get(i).getColor()) {
+                        case "azul":
+                            g.setColor(Color.BLUE);
+                            break;
+                        case "rojo":
+                            g.setColor(Color.RED);
+                            break;
+                        case "amarillo":
+                            g.setColor(Color.YELLOW);
+                            break;
+                        case "verde":
+                            g.setColor(Color.GREEN);
+                            break;
+                        case "negro":
+                            g.setColor(Color.BLACK);
+                            break;
+                        case "anaranjado":
+                            g.setColor(Color.ORANGE);
+                            break;
+                        case "morado":
+                            g.setColor(new Color(128, 0, 128));
+                            break;
+                        case "marron":
+                            g.setColor(new Color(139, 69, 19));
+                            break;
+                        case "rosado":
+                            g.setColor(Color.PINK);
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
+
+                    int posx = (int) polygonShapes.get(i).getPosx();
+                    int posy = (int) polygonShapes.get(i).getPosy();
+                    int sides = (int) polygonShapes.get(i).getSides();
+                    int width = (int) polygonShapes.get(i).getWidth();
+                    int height = (int) polygonShapes.get(i).getHeight();
+
+                    int[] pointsx = new int[sides];
+                    int[] pointsy = new int[sides];
+
+                    for (int j = 0; j < sides; j++) {
+                        pointsx[j] = posx + (int) ((width / 2.0) * Math.cos(2 * Math.PI * j / sides));
+                        pointsy[j] = posy + (int) ((height / 2.0) * Math.sin(2 * Math.PI * j / sides));
+                        System.out.println("Coordenada (" + pointsx[j] + "," + pointsy[j] + ")");
+                    }
+
+                    g.fillPolygon(pointsx, pointsy, sides);
+
+                    g.setColor(Color.BLACK);
+                    g.drawString(polygonShapes.get(i).getName(), (int) polygonShapes.get(i).getPosx(),
+                            (int) polygonShapes.get(i).getPosy());
                 }
             }
         }
+
+    }
+
+    public void cleanLists() {
+        circleShapes.clear();
+        rectangleShapes.clear();
+        lineShapes.clear();
+        squareShapes.clear();
+        polygonShapes.clear();
     }
 
     /**
@@ -112,6 +287,7 @@ public class shapes extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,20 +300,34 @@ public class shapes extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+
+        jButton1.setFont(new java.awt.Font("Poppins", 0, 18)); // NOI18N
+        jButton1.setText("Terminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(662, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(22, 22, 22))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jButton1)
+                .addContainerGap(441, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -154,6 +344,12 @@ public class shapes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        cleanLists();
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -169,6 +365,7 @@ public class shapes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

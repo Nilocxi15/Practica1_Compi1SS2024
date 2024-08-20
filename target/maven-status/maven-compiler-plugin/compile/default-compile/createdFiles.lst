@@ -21,6 +21,7 @@ com\mycompany\practica1\reports$2.class
 logic\line.class
 logic\rectangle.class
 com\mycompany\practica1\errorReport.class
+com\mycompany\practica1\shapes$2.class
 com\mycompany\practica1\reports$1.class
 logic\circle.class
 logic\TError.class
