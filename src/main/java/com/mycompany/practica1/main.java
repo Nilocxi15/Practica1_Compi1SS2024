@@ -118,6 +118,7 @@ public class main extends javax.swing.JFrame {
                 EReport.cleanTable();
                 EReport.printTable();
                 EReport.cleanList();
+                TReports.cleanLists();
             }
 
         }
