@@ -1,16 +1,16 @@
 package logic;
 
-public class shapesTwo {
+public class line {
     private String name, color;
-    private int posx, posy, numbOne, numbTwo;
+    private int posx, posy, posxfinal, posyfinal;
 
-    public shapesTwo(String name, String color, int posx, int posy, int numbOne, int numbTwo) {
+    public line(String name, String color, int posx, int posy, int posxfinal, int posyfinal) {
         this.name = name;
         this.color = color;
         this.posx = posx;
         this.posy = posy;
-        this.numbOne = numbOne;
-        this.numbTwo = numbTwo;
+        this.posxfinal = posxfinal;
+        this.posyfinal = posyfinal;
     }
 
     public String getName() {
@@ -29,11 +29,12 @@ public class shapesTwo {
         return posy;
     }
 
-    public int getNumbOne() {
-        return numbOne;
+    public int getPosxfinal() {
+        return posxfinal;
     }
 
-    public int getNumbTwo() {
-        return numbTwo;
+    public int getPosyfinal() {
+        return posyfinal;
     }
+    
 }

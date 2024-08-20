@@ -11,6 +11,7 @@ public class errorReport extends javax.swing.JFrame {
 
     public errorReport() {
         initComponents();
+        this.setTitle("Reporte de errores");
         this.setLocationRelativeTo(null);
     }
 

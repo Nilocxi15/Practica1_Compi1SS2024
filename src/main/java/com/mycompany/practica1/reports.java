@@ -15,6 +15,7 @@ public class reports extends javax.swing.JFrame {
 
     public reports() {
         initComponents();
+        this.setTitle("Reportes");
         printTables();
         this.setLocationRelativeTo(null);
     }
@@ -227,6 +228,11 @@ public class reports extends javax.swing.JFrame {
         jLabel1.setText("Reportes");
 
         jButton1.setText("Ejecutar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
         jLabel2.setText("Reporte de Ocurrencias de Operadores Aritméticos");
@@ -400,6 +406,14 @@ public class reports extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        shapes shapesWindow = new shapes();
+        shapesWindow.setVisible(true);
+        shapesWindow.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

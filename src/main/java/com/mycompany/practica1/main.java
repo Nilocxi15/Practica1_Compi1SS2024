@@ -16,6 +16,7 @@ public class main extends javax.swing.JFrame {
 
     public main() {
         initComponents();
+        this.setTitle("Inicio");
         this.setLocationRelativeTo(null);
         lineNumb = new lineNumber(codeTextPane);
         codeScrollPane.setRowHeaderView(lineNumb);

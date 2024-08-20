@@ -1,15 +1,16 @@
 package logic;
 
-public class shapesOne {
+public class circle {
+    
     private String name, color;
-    private int posx, posy, numbOne;
+    private double posx, posy, radius;
 
-    public shapesOne(String name, String color, int posx, int posy, int numbOne) {
+    public circle(String name, String color, double posx, double posy, double radius) {
         this.name = name;
         this.color = color;
         this.posx = posx;
         this.posy = posy;
-        this.numbOne = numbOne;
+        this.radius = radius;
     }
 
     public String getName() {
@@ -20,16 +21,16 @@ public class shapesOne {
         return color;
     }
 
-    public int getPosx() {
+    public double getPosx() {
         return posx;
     }
 
-    public int getPosy() {
+    public double getPosy() {
         return posy;
     }
 
-    public int getNumbOne() {
-        return numbOne;
+    public double getRadius() {
+        return radius;
     }
     
 }
