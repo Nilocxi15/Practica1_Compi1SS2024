@@ -387,11 +387,9 @@ public class shapes extends javax.swing.JFrame {
                 PDPage page = new PDPage();
                 document.addPage(page);
 
-                // Crear una imagen en memoria
                 BufferedImage bufferedImage = new BufferedImage(500, 500, BufferedImage.TYPE_INT_RGB);
                 Graphics2D g2d = bufferedImage.createGraphics();
 
-                // Dibujar figuras
                 g2d.setColor(Color.WHITE);
                 g2d.fillRect(0, 0, bufferedImage.getWidth(), bufferedImage.getHeight());
 
@@ -625,20 +623,16 @@ public class shapes extends javax.swing.JFrame {
                     }
                 }
 
-                // Convertir BufferedImage a PDImageXObject
                 PDImageXObject pdImage = LosslessFactory.createFromImage(document, bufferedImage);
 
-                // Obtener el tamaño de la página y la imagen
                 float pageWidth = page.getMediaBox().getWidth();
                 float pageHeight = page.getMediaBox().getHeight();
                 float imageWidth = bufferedImage.getWidth();
                 float imageHeight = bufferedImage.getHeight();
 
-                // Calcular las coordenadas para centrar la imagen
                 float x = (pageWidth - imageWidth) / 2;
                 float y = (pageHeight - imageHeight) / 2;
-
-                // Dibujar la imagen en el PDF
+                
                 try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
                     contentStream.drawImage(pdImage, x, y, imageWidth, imageHeight);
                 }
